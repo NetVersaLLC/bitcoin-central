@@ -40,7 +40,7 @@ class AccountOperation < ActiveRecord::Base
   }
 
   def to_label
-    "#{I18n.t("activerecord.models.account_operation.one")} n°#{id}"
+    "#{I18n.t("activerecord.models.account_operation.one")} n&deg;#{id}"
   end
   
   def refresh_orders
