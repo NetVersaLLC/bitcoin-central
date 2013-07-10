@@ -2,9 +2,15 @@ module ApplicationHelper
   # Displays a menu option if the logged-in user matches the optional criteria
   def menu_item(label, link, options = {}, &block)
     if options.blank? or display_menu?(current_user, options)
-      content_tag :li do
-        out = link_to(content_tag(:span, t(label)), link)
-        
+      content_tag :li, :class => block ? 'dropdown' : '' do
+        link_label = t(label)
+        link_attributes = {"class" => "dropdown-toggle"}
+        if block
+          link_label += content_tag(:b, '', {:class => "caret"})
+          link_attributes[:href] = '#'
+          link_attributes["data-toggle"] = "dropdown"
+        end
+        out = link_to(raw(link_label), link, link_attributes)
         if block
           out += block_is_haml?(block) ? capture_haml(&block) : block.call
         end

@@ -32,6 +32,9 @@ module BitcoinBank
 
     config.assets.enabled = true
     config.assets.version = '1.0'
+
+    config.assets.paths << Rails.root.join("lib", "assets", "components")
+    config.assets.paths << Rails.root.join("vendor", "assets", "bower_components")
     
     Haml::Template.options[:ugly] = true
   end

@@ -1,0 +1,12 @@
+{
+   "lib": {
+    "dependencies": {      
+    }    
+  },
+  "vendor": {
+    "dependencies": {
+        "normalize-css": "~2.1.2",
+        "bootstrap-sass": "~2.3.2"
+    }
+  }
+}

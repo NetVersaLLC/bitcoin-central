@@ -8,6 +8,7 @@
 //= require jquery.countdown.js
 //= require jquery.fancybox.js
 //= require active_scaffold
+//= require bootstrap-sass/js/bootstrap-dropdown
 
 $(document).ready(function() {
     /* Trade order creation form */

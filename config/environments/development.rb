@@ -32,7 +32,7 @@ BitcoinBank::Application.configure do
     :host => "development.bitcoin-central.net"
   }
 
-  config.assets.debug = true
+  config.assets.debug = false
 
   # Used to broadcast invoices public URLs
   config.base_url = "http://lvh.me:3000/"

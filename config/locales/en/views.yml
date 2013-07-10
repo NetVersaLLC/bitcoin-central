@@ -1,7 +1,7 @@
 en:
   layouts:
     application:
-      title: "Bitcoin-Central : Trade Bitcoins easily and safely"
+      title: "TradeBitcoin"
       description: Buy, sell and store Bitcoins easily and safely on the best open-source platform
     user_informations:
       signed_in_as: Signed-in as
@@ -11,6 +11,8 @@ en:
       sign_up: Sign-up
       sign_in: Sign-in
     navigation:
+      title: TradeBitcoin
+      index: Home
       account:
         main: Account
         balance: Balance
@@ -261,10 +263,10 @@ en:
     
   informations:
     welcome:
+      welcome: Welcome to the TradeBitcoin online exchange
       download: Download Bitcoin 0.5.0
       source: Source code
       trading_data_title: Last week's trading data
-      welcome: Welcome to bitcoin-central.net!
 
     support:
       contact: Contact us

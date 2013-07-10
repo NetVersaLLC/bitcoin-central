@@ -1,7 +1,5 @@
-!!! XML
-!!! 
-
-%html{ :"xmlns:fb" => "http://www.facebook.com/2008/fbml", :"xmlns:og" => "http://ogp.me/ns#", :xmlns => "http://www.w3.org/1999/xhtml"}
+!!!
+%html
   %head
     %title= t(".title")
 
@@ -16,7 +14,6 @@
     = csrf_meta_tag
 
     = render :partial => 'layouts/google_analytics'
-    = render :partial => 'layouts/open_graph'
     = render :partial => 'layouts/icons'
 
     %link{ :href => locale_switch_link(I18n.locale, request.url), :rel => "canonical" }
@@ -24,20 +21,11 @@
     = yield :head
 
   %body{ :class => [request[:controller], "#{request[:controller]}-#{request[:action]}"] }
-    #content
-
-      %h1#main-title= link_to(content_tag(:span, t(".title")), root_path)
-
-      = render :partial => 'layouts/locale_select'
-      = render :partial => 'layouts/user_informations'
+    .container
       = render :partial => 'layouts/navigation'
-      = render :partial => 'layouts/announcements'
-      = render :partial => 'layouts/flash', :object => flash
+      -#= render :partial => 'layouts/announcements'
+      -#= render :partial => 'layouts/flash', :object => flash
 
-      #right-content
-        = yield
+      = yield
 
-        / This is used to force the container to stretch
-        %div{ :style => "clear:both" }
-
-    = render :partial => 'layouts/footer'
+      = render :partial => 'layouts/footer'

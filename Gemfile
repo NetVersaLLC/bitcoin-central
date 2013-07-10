@@ -12,6 +12,7 @@ gem 'haml'
 gem 'jquery-rails'
 gem 'sass-rails'
 gem 'coffee-rails'
+gem 'bower-rails'
 
 gem 'recaptcha',
   :require => 'recaptcha/rails'
@@ -37,8 +38,8 @@ gem 'iban-tools'
 gem 'delayed_job'
 
 # CSS toolbox
-gem 'blueprint-rails'
 gem 'bourbon'
+gem 'less-rails'
 
 # File attachment with database storage support
 gem 'paperclip', 
