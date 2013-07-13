@@ -9,7 +9,7 @@ every 5.minutes do
 end
 
 every 10.minutes do
-  rake "liberty_reserve:synchronize_transactions"
+  #rake "liberty_reserve:synchronize_transactions"
   rake "notifications:trades"
 end
 

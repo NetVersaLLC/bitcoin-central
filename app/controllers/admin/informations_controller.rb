@@ -1,6 +1,6 @@
 class Admin::InformationsController < Admin::AdminController
   def balances
-    @balances = [:lrusd, :lreur, :pgau, :eur, :btc, :cad, :inr].inject({}) do |balances, currency|
+    @balances = [:usd, :btc].inject({}) do |balances, currency|
       balances[currency] = {}
       
       balances[currency][:user] = AccountOperation.

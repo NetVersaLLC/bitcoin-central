@@ -6,7 +6,7 @@ module ActionMailerDefaults
 
   def self.included(base)
     base.class_eval do
-      default :from => "Bitcoin Central support <support@bitcoin-central.net>"
+      default :from => "Bitcoin Central support <support@central.tradebitcoin.com>"
       layout 'mailers'
       alias_method_chain :mail, :logo
     end
