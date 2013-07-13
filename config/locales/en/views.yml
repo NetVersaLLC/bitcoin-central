@@ -3,13 +3,6 @@ en:
     application:
       title: "TradeBitcoin"
       description: Buy, sell and store Bitcoins easily and safely on the best open-source platform
-    user_informations:
-      signed_in_as: Signed-in as
-      address_tip: A new address is generated each time you receive a payment, your previous addresses will still work though
-      your_address: Your address
-      logout: Logout
-      sign_up: Sign-up
-      sign_in: Sign-in
     navigation:
       title: TradeBitcoin
       index: Home
@@ -19,6 +12,8 @@ en:
         history: History
         withdraw: Withdraw
         deposit: Deposit
+        edit: Edit
+        logout: Logout
       trading:
         main: Trading
         your_orders: Trade orders

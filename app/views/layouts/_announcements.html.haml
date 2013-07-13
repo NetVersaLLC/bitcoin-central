@@ -1,6 +1,6 @@
 - unless @announcements.blank?
   .announcements
-    %ul
-      - @announcements.each do |a|
-        %li= a.content.html_safe
+    - @announcements.each do |a|
+      .alert= a.content.html_safe
+
 
