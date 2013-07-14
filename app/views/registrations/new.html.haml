@@ -1,0 +1,45 @@
+.page-header
+  %h1= t :sign_up_for_account_title
+= form_for(resource, :as => resource_name, :url => registration_path(resource_name), html: {class: "form-horizontal"}) do |f|
+  = devise_error_messages!
+  - unless resource.new_record?
+    .control-group
+      = f.label :account, :class => "control-label"
+      .controls
+        = f.text_field :account, :disabled => true
+  .control-group
+    = f.label :email, :class => "control-label"
+    .controls
+      = f.text_field :email
+  .control-group
+    = f.label :password, :class => "control-label"
+    .controls
+      = f.password_field :password, :autocomplete => "off"
+      - unless resource.new_record?
+        .explanation
+          = t :new_password_explanation
+  .control-group
+    = f.label :password_confirmation, :class => "control-label"
+    .controls
+      = f.password_field :password_confirmation, :autocomplete => "off"
+      - unless resource.new_record?
+        .explanation
+          = t(".new_password_confirmation_explanation")
+  .control-group
+    = f.label :time_zone, :class => "control-label"
+    .controls
+      = f.time_zone_select :time_zone, nil, :prompt => "--"
+      .help-block
+        = t("users.form.time_zone_explanation")
+  - if resource.new_record?
+    .control-group
+      = f.label :recaptcha_response_field, :class => "control-label"
+      .controls
+        = recaptcha_tags :ssl => true
+  .control-groups
+    .controls
+      = f.submit :class => 'btn submit'
+
+  .control-group
+    .controls
+      = render :partial => "devise/shared/links"
