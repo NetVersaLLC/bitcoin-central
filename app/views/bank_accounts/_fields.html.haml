@@ -1,11 +1,14 @@
-.form-field
-  = form_builder.label :bic
-  = form_builder.text_field :bic
+.control-group
+  = form_builder.label :bic, :class => "control-label"
+  .controls
+    = form_builder.text_field :bic
 
-.form-field
-  = form_builder.label :iban
-  = form_builder.text_field :iban
+.control-group
+  = form_builder.label :iban, :class => "control-label"
+  .controls
+    = form_builder.text_field :iban
 
-.form-field
-  = form_builder.label :account_holder
-  = form_builder.text_area :account_holder, :rows => 5
+.control-group
+  = form_builder.label :account_holder, :class => "control-label"
+  .controls
+    = form_builder.text_area :account_holder, :rows => 5

@@ -1,26 +1,29 @@
-%h1= t :account_history_title
+%h2= t :account_history_title
 
-%table#history.default
-  %tr
-    %th Date
-    %th= t :currency
-    %th= t :amount
-    %th.auto-sized
+.row
+  .span6
+    %table.table.table-striped
+      %thead
+        %tr
+          %th Date
+          %th= t :currency
+          %th= t :amount
+          %th.auto-sized
 
-  - unless @transfers.blank?
-    - @transfers.each do |transfer|
-      %tr{ :class => cycle('even', 'odd') }
-        %td= l transfer.created_at
-        %td
-          = currency_icon_for(transfer.currency)
-          = transfer.currency
-        %td.amount
-          %span{ :class => color_for(transfer), :title => confirmation_tooltip_for(transfer) }
-            = "#{transfer.amount > 0 ? "+" : "-"} #{number_to_currency transfer.amount.abs, :unit => ""}"
-        %td.auto-sized
-          = transfer_details(transfer)  
+      - unless @transfers.blank?
+        - @transfers.each do |transfer|
+          %tr{ :class => cycle('even', 'odd') }
+            %td= l transfer.created_at
+            %td
+              = currency_icon_for(transfer.currency)
+              = transfer.currency
+            %td.amount
+              %span{ :class => color_for(transfer), :title => confirmation_tooltip_for(transfer) }
+                = "#{transfer.amount > 0 ? "+" : "-"} #{number_to_currency transfer.amount.abs, :unit => ""}"
+            %td.auto-sized
+              = transfer_details(transfer)
 
-  - else
-    = render :partial => "layouts/no_data"
+      - else
+        = render :partial => "layouts/no_data"
 
-= will_paginate(@transfers)
+    = will_paginate(@transfers)

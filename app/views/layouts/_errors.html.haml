@@ -1,0 +1,10 @@
+- if model.errors.any?
+  #errors.alert.alert-block.alert-error
+    %h3
+      - if translated_message
+        = translated_message
+      - else
+        = t message, :count => model.errors.count
+    %ul
+      - model.errors.full_messages.each do |msg|
+        %li= msg

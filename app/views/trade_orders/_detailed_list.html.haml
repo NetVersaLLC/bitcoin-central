@@ -1,15 +1,16 @@
-%table#trade-orders.default
-  %tr
-    %th= t("activerecord.attributes.trade_order.updated_at")
-    %th= t("activerecord.attributes.trade_order.category")
-    %th= t("activerecord.attributes.trade_order.type")
-    %th= t("activerecord.attributes.trade_order.amount")
-    %th= t("activerecord.attributes.trade_order.ppc")
-    %th= t("activerecord.attributes.trade_order.total")
-    %th.auto-sized
-    %th.auto-sized
-    %th.auto-sized
-    %th.auto-sized
+%table.table.table-striped
+  %thead
+    %tr
+      %th= t("activerecord.attributes.trade_order.updated_at")
+      %th= t("activerecord.attributes.trade_order.category")
+      %th= t("activerecord.attributes.trade_order.type")
+      %th= t("activerecord.attributes.trade_order.amount")
+      %th= t("activerecord.attributes.trade_order.ppc")
+      %th= t("activerecord.attributes.trade_order.total")
+      %th.auto-sized
+      %th.auto-sized
+      %th.auto-sized
+      %th.auto-sized
 
   - unless trade_orders.blank?
     - trade_orders.each do |to|

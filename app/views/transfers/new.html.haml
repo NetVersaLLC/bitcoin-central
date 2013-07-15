@@ -1,42 +1,44 @@
-%h1= t(".title")
+.page-header
+  %h2= t(".title")
 = t(".body_html")
 
 %br
 
-= form_for @transfer, :as => :transfer, :url => account_transfers_path do |f|
+= form_for @transfer, :as => :transfer, :url => account_transfers_path, :html => {class: "form-horizontal"} do |f|
   = errors_for(@transfer, :translated_message => t(".error"), :include_nested => :bank_account)
 
-  .form-field
-    = f.label :currency
-    = f.select :currency, [["Bitcoins", "BTC"], ["EUR", "EUR"], ["Liberty Reserve USD", "LRUSD"], ["Liberty Reserve EUR", "LREUR"]]
+  .control-group
+    = f.label :currency, :class => "control-label"
+    .controls
+      = f.select :currency, [["Bitcoins", "BTC"], ["USD", "USD"]]
   
   - if @transfer.currency == "BTC"
-    .form-field
-      = f.label :address
-      = f.text_field :address
+    .control-group
+      = f.label :address, :class => "control-label"
+      .controls
+        = f.text_field :address
 
-  - if ["LRUSD", "LREUR"].include? @transfer.currency
-    .form-field
-      = f.label :lr_account_id
-      = f.text_field :lr_account_id
-
-  - if @transfer.currency == "EUR"
+  - if @transfer.currency == "USD"
     - if @bank_accounts.blank? && @transfer.bank_account_id.blank?
       = f.fields_for :bank_account do |bank_account|
         = render :partial => 'bank_accounts/fields', :locals => { :form_builder => bank_account }
     - else
-      .form-field
-        = f.label :bank_account_id
-        = f.select :bank_account_id, @bank_accounts, {}, { :prompt => "--" }
-        .explanation= link_to t(".manage_bank_accounts"), user_bank_accounts_path
+      .control-group
+        = f.label :bank_account_id, :class => "control-label"
+        .controls
+          = f.select :bank_account_id, @bank_accounts, {}, { :prompt => "--" }
+          .help-inline= link_to t(".manage_bank_accounts"), user_bank_accounts_path
         
-  .form-field
-    = label_tag :max_amount, t(".max_amount")
-    = text_field_tag :max_amount, amount_field_value(current_user.max_withdraw_for(@transfer.currency)), :class => "amount", :disabled => true
+  .control-group
+    = label_tag :max_amount, t(".max_amount"), :class => "control-label"
+    .controls
+      = text_field_tag :max_amount, amount_field_value(current_user.max_withdraw_for(@transfer.currency)), :class => "amount", :disabled => true
 
-  .form-field
-    = f.label :amount
-    = f.text_field :amount, :value => amount_field_value(@transfer.amount), :autocomplete => "off"
+  .control-group
+    = f.label :amount, :class => "control-label"
+    .controls
+      = f.text_field :amount, :value => amount_field_value(@transfer.amount), :autocomplete => "off"
     
-  .form-field
-    = f.submit :value => t(".submit"), :class => "submit"
+  .control-group
+    .controls
+      = f.submit :value => t(".submit"), :class => "btn btn-success submit"

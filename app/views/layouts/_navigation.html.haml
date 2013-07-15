@@ -11,6 +11,7 @@
               = menu_item ".trading.your_orders", account_trade_orders_path, :logged_in => true
               = menu_item ".trading.trade_history", account_trades_path, :logged_in => true
               = menu_item ".trading.order_book", order_book_path
+              = menu_item ".trading.new_order", new_account_trade_order_path
 
           = menu_item ".account.main", nil, :logged_in => true do
             %ul{:class => "dropdown-menu"}

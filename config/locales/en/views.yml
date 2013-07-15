@@ -19,6 +19,7 @@ en:
         your_orders: Trade orders
         order_book: Order book
         trade_history: Trade history
+        new_order: Create an order
       admin:
         main: Admin
         transfers: Transfers
@@ -89,8 +90,8 @@ en:
       currency_explanation: Currency you want to trade
       type_explanation: Different matching types are explained in our help page     
       category: Category
-      buy: Buy
-      sell: Sell
+      buy: Buy Bitcoin
+      sell: Sell Bitcoin
       sell_or_buy_explanation: Whether you want to buy or sell bitcoins
       your_balance: Your balance
       your_balance_explanation: Your available confirmed balance

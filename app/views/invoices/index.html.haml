@@ -1,14 +1,17 @@
+
+.page-header
+  %h2= t("activerecord.models.invoice.other")
+
 = creation_link :invoice, t(".create")
 
-%h1= t("activerecord.models.invoice.other")
-
-%table.default
-  %tr
-    %th= t("activerecord.attributes.invoice.reference")
-    %th= t("activerecord.attributes.invoice.state")
-    %th= t("activerecord.attributes.invoice.paid_at")
-    %th= t("activerecord.attributes.invoice.amount")
-    %th.auto-sized
+%table.table.table-striped
+  %thead
+    %tr
+      %th= t("activerecord.attributes.invoice.reference")
+      %th= t("activerecord.attributes.invoice.state")
+      %th= t("activerecord.attributes.invoice.paid_at")
+      %th= t("activerecord.attributes.invoice.amount")
+      %th.auto-sized
 
   - unless @invoices.blank?
     - @invoices.each do |invoice|

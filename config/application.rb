@@ -35,6 +35,10 @@ module BitcoinBank
 
     config.assets.paths << Rails.root.join("lib", "assets", "components")
     config.assets.paths << Rails.root.join("vendor", "assets", "bower_components")
+
+    config.action_view.field_error_proc = Proc.new { |html_tag, instance|
+      "#{html_tag}".html_safe
+    }
     
     Haml::Template.options[:ugly] = true
   end

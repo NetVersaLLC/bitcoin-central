@@ -9,6 +9,7 @@
 //= require jquery.fancybox.js
 //= require active_scaffold
 //= require bootstrap-sass/js/bootstrap-dropdown
+//= require bootstrap-sass/js/bootstrap-tab
 
 $(document).ready(function() {
     /* Trade order creation form */

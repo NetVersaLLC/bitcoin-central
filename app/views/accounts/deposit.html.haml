@@ -1,7 +1,8 @@
-%h1= t(".deposit_bitcoins_title")
+.page-header
+  %h2= t(".deposit_bitcoins_title")
 %p= t(".deposit_bitcoins_body_html", :estimation => Transfer::MIN_BTC_CONFIRMATIONS * 10)
 
-%h1= t(".deposit_eur_title")
+%h3= t(".deposit_eur_title")
 %p= t(".deposit_eur_body_html")
 
 %div#bank-info
@@ -36,28 +37,27 @@
   - else
     %p#unavailable= t(".not_available")
 
-%h1= t(".other_options")
+%h2= t(".other_options")
+%hr
 
-%h2 Deposit CAD
+%h3 Deposit CAD
 %p= link_to "View instructions", "/s/cad_operations"
 
-%h2 Deposit INR
+%h3 Deposit INR
 %p= link_to "View instructions", "/s/inr_operations"
 
-%h2= t(".deposit_lr_title")
-%p= render(:partial => 'lr_sci_form')
-
-%h2= t(".deposit_pgau_title")
+%h3= t(".deposit_pgau_title")
 %p= t(".deposit_pgau_body_html")
 
 %br
 
 = form_tag pecunix_deposit_form_account_path, :method => :get, :remote => true do
-  .form-field
-    = label_tag :amount, t(".pgau_amount")
-    = text_field_tag :amount, nil
+  .control-group
+    = label_tag :amount, t(".pgau_amount"), :class => "control-label"
+    .controls
+      = text_field_tag :amount, nil
 
   .form-field
-    = submit_tag t(".deposit_pgau"), :class => "submit"
+    = submit_tag t(".deposit_pgau"), :class => "btn btn-success submit"
   
 #pecunix-sci-form-container.hidden

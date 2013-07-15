@@ -1,13 +1,15 @@
-%h1= t(".title")
+.page-header
+  %h1= t(".title")
 
-%table#trade-history.default
-  %tr
-    %th= t("activerecord.attributes.trade.created_at")
-    %th= t("activerecord.attributes.trade.type")
-    %th= t("activerecord.attributes.trade.amount")
-    %th= t("activerecord.attributes.trade.price")
-    %th= t("activerecord.attributes.trade.total")
-    %th.auto-sized
+%table.table.table-striped
+  %thead
+    %tr
+      %th= t("activerecord.attributes.trade.created_at")
+      %th= t("activerecord.attributes.trade.type")
+      %th= t("activerecord.attributes.trade.amount")
+      %th= t("activerecord.attributes.trade.price")
+      %th= t("activerecord.attributes.trade.total")
+      %th.auto-sized
 
   - unless @trades.blank?
     - @trades.each do |trade|
