@@ -1,61 +1,72 @@
-= form_for @user, :as => :user, :url => user_path do |f|
+= form_for @user, :as => :user, :url => user_path, :html => {:class => "form-horizontal"} do |f|
   = errors_for @user, :message => "error_updating_account"
 
   - unless @user.new_record?
-    .form-field
-      = f.label :name
-      = f.text_field :name, :disabled => true
+    .control-group
+      = f.label :name, :class => "control-label"
+      .controls
+        = f.text_field :name, :disabled => true
 
-  .form-field
-    = f.label :email
-    = f.text_field :email, :disabled => true
+  .control-group
+    = f.label :email, :class => "control-label"
+    .controls
+      = f.text_field :email, :disabled => true
 
-  .form-field
-    = f.label :full_name
-    = f.text_field :full_name, :disabled => !@user.full_name.blank?
+  .control-group
+    = f.label :full_name, :class => "control-label"
+    .controls
+      = f.text_field :full_name, :disabled => !@user.full_name.blank?
 
-  .form-field
-    = f.label :address
-    = f.text_area :address, :disabled => !@user.address.blank?, :rows => 4
+  .control-group
+    = f.label :address, :class => "control-label"
+    .controls
+      = f.text_area :address, :disabled => !@user.address.blank?, :rows => 4
 
-  .form-field
-    = f.label :time_zone
-    = f.time_zone_select :time_zone, nil, :prompt => "--"
-    .explanation= t(".time_zone_explanation")
+  .control-group
+    = f.label :time_zone, :class => "control-label"
+    .controls
+      = f.time_zone_select :time_zone, nil, :prompt => "--"
+      .help-inline= t(".time_zone_explanation")
 
-  %div{ :style => "clear:both;" }
+  .clearfix
 
   - unless @user.new_record?
     %fieldset
       %legend= t(".additional_authentication_requirements")
-      .form-field
-        = f.label :require_ga_otp
-        = f.check_box :require_ga_otp, :class => "checkbox"
-        .explanation= link_to t(".ga_otp_config"), ga_otp_configuration_user_path
+      .control-group
+        = f.label :require_ga_otp, :class => "control-label"
+        .controls
+          = f.check_box :require_ga_otp, :class => "checkbox"
+          .help-inline= link_to t(".ga_otp_config"), ga_otp_configuration_user_path
 
-      .form-field
-        = f.label :require_yk_otp
-        = f.check_box :require_yk_otp, :class => "checkbox"
-        .explanation= link_to t(".yk_otp_config"), user_yubikeys_path
+      .control-group
+        = f.label :require_yk_otp, :class => "control-label"
+        .controls
+          = f.check_box :require_yk_otp, :class => "checkbox"
+          .help-inline= link_to t(".yk_otp_config"), user_yubikeys_path
 
     %fieldset
       %legend= t("activerecord.models.bank_account.other")
-      %p= t(".registered_bank_accounts", :count => current_user.bank_accounts.count)
-      %p= link_to t(".manage_bank_accounts"), user_bank_accounts_path
+      .control-group
+        .controls
+          %p= t(".registered_bank_accounts", :count => current_user.bank_accounts.count)
+          %p= link_to t(".manage_bank_accounts"), user_bank_accounts_path
 
     %fieldset
       %legend= t(".notifications")
-      .form-field
-        = f.label :notify_on_trade
-        = f.check_box :notify_on_trade, :class => "checkbox"
-        .explanation= t(".notify_on_trade_explanation")        
+      .control-group
+        = f.label :notify_on_trade, :class => "control-label"
+        .controls
+          = f.check_box :notify_on_trade, :class => "checkbox"
+          .help-inline= t(".notify_on_trade_explanation")
 
     %fieldset
       %legend= t(".api_tools")
-      .form-field
-        = f.label :merchant
-        = f.check_box :merchant, :class => "checkbox"
-        .explanation= t(".merchant_explanation")
+      .control-group
+        = f.label :merchant, :class => "control-label"
+        .controls
+          = f.check_box :merchant, :class => "checkbox"
+          .help-inline= t(".merchant_explanation")
 
 
   - if @user.new_record?
@@ -64,5 +75,6 @@
       = f.text_field :account, :disabled => true
       .recaptcha-input= recaptcha_tags :ssl => true
 
-  .form-field
-    = f.submit t(".submit"), :class => 'submit'
+  .control-group
+    .controls
+      = f.submit t(".submit"), :class => 'btn btn-success submit'

@@ -1,0 +1,11 @@
+- if flash
+  - unless [:notice, :alert, :error].map{ |i| flash[i].blank? }.all?
+    - unless flash[:error].blank?
+      .alert.alert-error
+        = flash[:error].html_safe
+    - unless flash[:alert].blank?
+      .alert
+        = flash[:alert].html_safe
+    - unless flash[:notice].blank?
+      .alert.alert-info
+        = flash[:notice].html_safe

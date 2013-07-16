@@ -1,8 +1,9 @@
-%h1= t :account_details_title
+.page-header
+  %h2= t :account_details_title
 
 = render 'form'
 
 %br
 
-= form_for @user, :as => :user, :url => update_password_user_path do |f|
+= form_for @user, :as => :user, :url => update_password_user_path, :html => {:class => "form-horizontal"} do |f|
   = render :partial => 'password_change_form', :locals => { :f => f }
