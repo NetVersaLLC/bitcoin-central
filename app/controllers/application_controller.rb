@@ -42,7 +42,7 @@ class ApplicationController < ActionController::Base
   end
 
   def get_announcements
-    if params[:action] == 'welcome' || (params[:controller] == "accounts" && params[:action] == "show")
+    if params[:action] == 'visitor' || (params[:controller] == "accounts" && params[:action] == "show")
       @announcements = Announcement.active.all
     end
   end

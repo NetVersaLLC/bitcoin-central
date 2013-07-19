@@ -36,6 +36,11 @@ en:
         terms_of_service: Terms of Service
       ecommerce:
         main: E-commerce
+      market_data:
+        last_price: "Last Price: <b>%{price}</b>"
+        day_average: "Average Price: <b>%{price}</b>"
+        day_range: "Last 24h: <b>%{low} - %{high}</b>"
+        day_volume: "Daily Volume: <b>%{btc} BTC</b> ( <b>%{usd} USD</b> )"
 
   invoices:
     new:

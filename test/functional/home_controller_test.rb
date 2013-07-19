@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class InformationsControllerTest < ActionController::TestCase
+class HomeControllerTest < ActionController::TestCase
   test "should get frontpage" do
     get :welcome
     assert_response :success

@@ -1,3 +1,8 @@
+%ul.unstyled.inline.text-info
+  %li= raw t(".market_data.last_price", :price => DataService::last_price)
+  %li= raw t(".market_data.day_average", :price => DataService::day_average)
+  %li= raw t(".market_data.day_range", :low => DataService::day_low, :high => DataService::day_high)
+  %li= raw t(".market_data.day_volume", :btc => DataService::day_volume_btc, :usd => DataService::day_volume_usd)
 .row.navigation
   .span12
     .navbar
@@ -38,9 +43,9 @@
               = menu_item "activerecord.models.currency.other", admin_currencies_path, :admin => true
               = menu_item "activerecord.models.ticket.other", admin_tickets_path
 
-          = menu_item ".ecommerce.main", nil, :merchant => true do
-            %ul{:class => "dropdown-menu"}
-              = menu_item "activerecord.models.invoice.other", invoices_path
+          -#= menu_item ".ecommerce.main", nil, :merchant => true do
+          -#  %ul{:class => "dropdown-menu"}
+          -#    = menu_item "activerecord.models.invoice.other", invoices_path
         %ul.nav.pull-right
           %li.divider-vertical
           - if current_user

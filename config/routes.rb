@@ -75,7 +75,7 @@ BitcoinBank::Application.routes.draw do
       end
     end
     
-    match '/balances', :to => 'informations#balances', :as => :balances
+    match '/balances', :to => 'home#balances', :as => :balances
   end
   
   match '/qrcode/:data.png' => 'qrcodes#show', :as => :qrcode
@@ -86,9 +86,9 @@ BitcoinBank::Application.routes.draw do
 
   match '/ticker' => 'trades#ticker'
 
-  match '/economy' => 'informations#economy', :as => :economy
+  match '/economy' => 'home#economy', :as => :economy
 
-  match '/support' => 'informations#support', :as => :support
+  match '/support' => 'home#support', :as => :support
 
-  root :to => 'informations#welcome'
+  root :to => 'home#index'
 end

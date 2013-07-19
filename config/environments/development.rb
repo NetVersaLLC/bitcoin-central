@@ -29,12 +29,14 @@ BitcoinBank::Application.configure do
   config.action_mailer.delivery_method = :test
 
   config.action_mailer.default_url_options = {
-    :host => "central.tradebitcoin.com"
+    :host => "tradebitcoin.local"
   }
 
   config.assets.debug = false
 
   # Used to broadcast invoices public URLs
   config.base_url = "http://lvh.me:3000/"
+
+  config.cache_store = nil
 end
 

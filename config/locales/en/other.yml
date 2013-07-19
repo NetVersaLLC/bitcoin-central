@@ -13,7 +13,7 @@ en:
   # Generic
   no_data: No data has been found
 
-  # controllers/informations_controller.rb
+  # controllers/home_controller.rb
   chart_date_format: %m/%d
 
   # controllers/sessions_controller.rb
@@ -87,15 +87,15 @@ en:
   # views/backup_mailer/wallet_backup.text
   encrypted_wallet: Encrypted server wallet for %{date}
 
-  # views/informations/economy.html
+  # views/home/economy.html
   economy_title: Bitcoin economy summarized
   how_many_generated: How many bitcoins are there ?
   generated_coins_html: Currently there has been a total of <strong>%{count}</strong> generated bitcoins.
 
-  # views/informations/faq.html
+  # views/home/faq.html
   faq_title: Frequently asked questions
 
-  # views/informations/welcome.html
+  # views/home/welcome.html
 
   # views/layouts/_footer.html
   footer_html: 'Feel free to support this project by donating a few BTC to <span class="bitcoin-address">%{adress}</span>'

@@ -12,7 +12,7 @@ fr:
   # Generic
   no_data: Aucune donnée
 
-  # controllers/informations_controller.rb
+  # controllers/home_controller.rb
   chart_date_format: %d.%m.
 
   # controllers/sessions_controller.rb
@@ -87,15 +87,15 @@ fr:
   # views/backup_mailer/wallet_backup.text
   encrypted_wallet: Copie cryptée du wallet.dat %{date}
 
-  # views/informations/economy.html
+  # views/home/economy.html
   economy_title: Économie
   how_many_generated: "Combien de Bitcoins y-a-t'il en circulation ?"
   generated_coins_html: "Il y a à l'heure actuelle <strong>%{count}</strong> Bitcoins en circulation."
 
-  # views/informations/faq.html
+  # views/home/faq.html
   faq_title: Foire aux questions
 
-  # views/informations/welcome.html
+  # views/home/welcome.html
 
   # views/layouts/_footer.html
   footer_html: "Vous pouvez supporter ce projet en donnant à l'adresse : <span class=\"bitcoin-address\">%{adress}</span>"

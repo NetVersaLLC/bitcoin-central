@@ -1,5 +1,5 @@
 class TradeOrder < ActiveRecord::Base
-  MIN_AMOUNT = 1.0
+  MIN_AMOUNT = 0.01
   MIN_DARK_POOL_AMOUNT = 400.0
 
   TYPES = [:limit_order, :market_order]

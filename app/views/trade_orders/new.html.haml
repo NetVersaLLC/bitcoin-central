@@ -65,8 +65,8 @@
             .controls
               = text_field_tag :balance, nil, :disabled => true, :class => "input-medium amount"
               .help-inline= t(".your_balance_explanation")
-          = f.hidden_field :category, :value => "buy"
-          = f.hidden_field :currency, :value => "USD"
+          = f.hidden_field :category, :value => "sell"
+          = f.hidden_field :currency, :value => "BTC"
           = f.hidden_field :type, :value => "limit_order"
           = f.hidden_field :dark_pool, :value => "0"
           .control-group

@@ -63,7 +63,7 @@ class TradeOrdersController < ApplicationController
   end
 
   def book
-    @currency = params[:currency] || "EUR"
+    @currency = params[:currency] || "USD"
     
     @sales = TradeOrder.get_orders :sell,
       :user => current_user,

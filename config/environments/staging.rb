@@ -9,16 +9,16 @@ BitcoinBank::Application.configure do
   
   config.action_mailer.delivery_method = :sendmail
   config.action_mailer.default_url_options = {
-    :host => "tradebitcoin.com"
+    :host => "test.tradebitcoin.com"
   }
   
   config.middleware.use ::ExceptionNotifier,
     :email_prefix => "[BC Exception] ",	 	
-    :sender_address => %w{no-reply@tradebitcoin.com},
-    :exception_recipients => %w{support@tradebitcoin.com}
+    :sender_address => %w{no-reply@test.tradebitcoin.com},
+    :exception_recipients => %w{support@test.tradebitcoin.com}
   
   # Used to broadcast invoices public URLs
-  config.base_url = "https://tradebitcoin.com/"
+  config.base_url = "https://test.tradebitcoin.com/"
   
   config.assets.compress = true
   config.assets.compile = false
