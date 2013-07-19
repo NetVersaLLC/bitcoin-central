@@ -3,11 +3,7 @@ class DataService
   CURRENCY = 'USD'
 
   def self.last_price
-    begin
-      Operation.where('currency = ? and type = ?', CURRENCY, 'Trade').order('id desc').first().ppc.to_f
-    rescue NoMethodError
-      return 0
-    end
+    (Operation.where('currency = ? and type = ?', CURRENCY, 'Trade').order('id desc').first().try(:ppc) || 0).to_f
   end
 
   def self.day_low
