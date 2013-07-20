@@ -1,0 +1,5 @@
+%h2= t(".active_orders", :count => @trade_orders.active.count)
+= render :partial => "trade_orders/detailed_list", :locals => { :trade_orders => @trade_orders.active }
+
+%h2= t(".inactive_orders", :count => @trade_orders.inactive.count)
+= render :partial => "trade_orders/detailed_list", :locals => { :trade_orders => @trade_orders.inactive }

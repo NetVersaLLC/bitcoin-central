@@ -1,4 +1,7 @@
 class TradeOrdersController < ApplicationController
+
+  CURRENCY = 'USD'
+
   skip_before_filter :authenticate_user!,
     :only => :book
 
@@ -53,6 +56,13 @@ class TradeOrdersController < ApplicationController
 
   def index
     @trade_orders = current_user.trade_orders.paginate(:page => params[:page], :per_page => 16)
+    @sales = _get_orders(CURRENCY, :sell)
+    @purchases = _get_orders(CURRENCY, :buy)
+    @trade_order = TradeOrder.new
+  end
+
+  def my_orders
+    @trade_orders = current_user.trade_orders.paginate(:page => params[:page], :per_page => 16)
   end
 
   def destroy
@@ -63,17 +73,8 @@ class TradeOrdersController < ApplicationController
   end
 
   def book
-    @currency = params[:currency] || "USD"
-    
-    @sales = TradeOrder.get_orders :sell,
-      :user => current_user,
-      :currency => @currency,
-      :separated => params[:separated]
-
-    @purchases = TradeOrder.get_orders :buy,
-      :user => current_user,
-      :currency => @currency,
-      :separated => params[:separated]
+    @sales = _get_orders(CURRENCY, :sell)
+    @purchases = _get_orders(CURRENCY, :buy)
 
     respond_to do |format|
       format.html
@@ -98,5 +99,11 @@ class TradeOrdersController < ApplicationController
         render :json => json
       end
     end
+  end
+
+  private
+
+  def _get_orders(currency, type)
+    TradeOrder.get_orders type, :user => current_user, :currency => currency, :separated => params[:separated]
   end
 end

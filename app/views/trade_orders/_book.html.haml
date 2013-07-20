@@ -1,0 +1,5 @@
+.row
+  .span6
+    = render :partial => "list", :locals => { :type => "purchase", :title => :bids, :orders => @purchases }
+  .span6
+    = render :partial => "list", :locals => { :type => "sale", :title => :asks, :orders => @sales }

@@ -1,4 +1,4 @@
-- if (balance > 0) or %w{btc eur}.include?(code)
+- if (balance > 0) or %w{btc usd}.include?(code)
   %tr
     %td= link_to image_tag("currencies/#{code}_logo.png", :alt => t("currencies.#{code}.name"), :title => t("currencies.#{code}.name")), t("currencies.#{code}.link"), :target => "_blank", :title => t("currencies.#{code}.name")
     %td= code.upcase

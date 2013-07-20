@@ -42,7 +42,7 @@ BitcoinBank::Application.routes.draw do
     
     resources :invoices
 
-    resources :trade_orders, :only => [:index, :new, :create, :destroy] do
+    resources :trade_orders, :only => [:index, :new, :create, :destroy, :my] do
       post :activate
     end
   end
@@ -81,6 +81,7 @@ BitcoinBank::Application.routes.draw do
   match '/qrcode/:data.png' => 'qrcodes#show', :as => :qrcode
   
   match '/order_book' => 'trade_orders#book'
+  match '/my_orders' => 'trade_orders#my_orders', :as => :my_orders
 
   match '/trades' => 'trades#all_trades'
 

@@ -6,17 +6,19 @@ en:
     navigation:
       title: TradeBitcoin
       index: Home
+      user_balance: "Your Balance: <b>%{btc}</b> BTC <b>%{usd}</b> USD"
+      trade: "Buy / Sell"
       account:
         main: Account
         balance: Balance
         history: History
         withdraw: Withdraw
         deposit: Deposit
-        edit: Edit
+        edit: Account settings
         logout: Logout
+        my_orders: My orders
       trading:
         main: Trading
-        your_orders: Trade orders
         order_book: Order book
         trade_history: Trade history
         new_order: Create an order
@@ -70,6 +72,26 @@ en:
   trade_orders:
     index:
       create: Create an order
+      my_orders: "My Orders (%{count})"
+      order_book: "Order Book"
+    new_order:
+      title: Create a trade order
+      currency_explanation: Currency you want to trade
+      type_explanation: Different matching types are explained in our help page
+      category: Category
+      buy: Buy Bitcoin
+      sell: Sell Bitcoin
+      sell_or_buy_explanation: Whether you want to buy or sell bitcoins
+      amount_explanation: BTC amount you're trading
+      ppc_explanation: Price for 1 BTC
+      total_explanation: The total for your order
+      dark_pool_explanation: Should the order be hidden ?
+      help: Visit our help page if you need assistance trading Bitcoins
+      error:
+        one: "1 error prevented your trade order from being created :"
+        other: "%{count} errors prevented your trade order from being created :"
+    my_orders:
+      create: Create an order
       active_orders: "Active orders (%{count})"
       inactive_orders: "Inactive orders (%{count})"
     detailed_list:
@@ -90,24 +112,6 @@ en:
       amount: Amount
       total: Total
       market_order: Market Order  
-    new:
-      title: Create a trade order
-      currency_explanation: Currency you want to trade
-      type_explanation: Different matching types are explained in our help page     
-      category: Category
-      buy: Buy Bitcoin
-      sell: Sell Bitcoin
-      sell_or_buy_explanation: Whether you want to buy or sell bitcoins
-      your_balance: Your balance
-      your_balance_explanation: Your available confirmed balance
-      amount_explanation: BTC amount you're trading
-      ppc_explanation: Price for 1 BTC
-      total_explanation: The total for your order
-      dark_pool_explanation: Should the order be hidden ?
-      help: Visit our help page if you need assistance trading Bitcoins
-      error:
-        one: "1 error prevented your trade order from being created :"
-        other: "%{count} errors prevented your trade order from being created :"
 
   trades:
     index:

@@ -1,7 +1,8 @@
-= creation_link :account_trade_order, t(".create")
 
-%h2= t(".active_orders", :count => @trade_orders.active.count)
+= render 'new_order'
+
+%h2= t(".my_orders", :count => @trade_orders.active.count)
 = render :partial => "trade_orders/detailed_list", :locals => { :trade_orders => @trade_orders.active }
 
-%h2= t(".inactive_orders", :count => @trade_orders.inactive.count)
-= render :partial => "trade_orders/detailed_list", :locals => { :trade_orders => @trade_orders.inactive }
+%h2= t ".order_book"
+= render 'book'
