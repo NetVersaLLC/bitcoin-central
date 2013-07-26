@@ -20,7 +20,7 @@
         %td= t(".#{to.type.gsub(/Order/, "").downcase}")
         %td.amount= number_to_bitcoins to.amount, :precision => 4
         - if to.is_a?(LimitOrder)
-          %td.amount= format_amount(to.ppc, to[:currency], 5)
+          %td.amount= format_amount(to.ppc, to[:currency], 4)
           %td.amount= format_amount(to.ppc * to.amount, to[:currency], 4)
         - else
           %td= t(".market_order")

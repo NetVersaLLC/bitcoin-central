@@ -24,7 +24,7 @@ module TradeOrdersHelper
   end
 
   def format_amount(amount, currency, precision = 4)
-    "#{number_to_currency(amount, :unit => "", :precision => precision)} #{currency + ("&nbsp;" * (5 - currency.size))}".html_safe
+    "#{number_to_human(amount, :unit => "", :precision => precision)} #{currency + ("&nbsp;" * (5 - currency.size))}".html_safe
   end
 
   def dark_pool_icon_for(trade_order)

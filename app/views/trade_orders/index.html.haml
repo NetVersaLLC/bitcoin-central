@@ -1,8 +1,8 @@
 
 = render 'new_order'
 
-%h2= t(".my_orders", :count => @trade_orders.active.count)
-= render :partial => "trade_orders/detailed_list", :locals => { :trade_orders => @trade_orders.active }
+.widget-container
+  %h4.breadcrumb= t(".my_orders", :count => @trade_orders.active.count)
+  = render :partial => "my_orders", :locals => { :trade_orders => @trade_orders.active }
 
-%h2= t ".order_book"
 = render 'book'

@@ -73,18 +73,19 @@ en:
     index:
       create: Create an order
       my_orders: "My Orders (%{count})"
-      order_book: "Order Book"
     new_order:
+      buy_bitcoin_amount_label: I'd like to buy
+      sell_bitcoin_amount_label: I'd like to sell
+      bitcoin_amount_placehodler: Amount of BTC
+      ppc_label: "Price per coin"
+      max_ppc_placeholder: "Max. USD for 1 BTC"
+      min_ppc_placeholder: "Min. USD for 1 BTC"
       title: Create a trade order
-      currency_explanation: Currency you want to trade
       type_explanation: Different matching types are explained in our help page
       category: Category
       buy: Buy Bitcoin
       sell: Sell Bitcoin
       sell_or_buy_explanation: Whether you want to buy or sell bitcoins
-      amount_explanation: BTC amount you're trading
-      ppc_explanation: Price for 1 BTC
-      total_explanation: The total for your order
       dark_pool_explanation: Should the order be hidden ?
       help: Visit our help page if you need assistance trading Bitcoins
       error:
@@ -94,7 +95,6 @@ en:
       create: Create an order
       active_orders: "Active orders (%{count})"
       inactive_orders: "Inactive orders (%{count})"
-    detailed_list:
       na: N/A
       sell: Ask
       buy: Bid
@@ -108,6 +108,8 @@ en:
       bids: Bids
       asks: Asks
     list:
+      bids: Market Bids
+      asks: Market Asks
       price: Price
       amount: Amount
       total: Total

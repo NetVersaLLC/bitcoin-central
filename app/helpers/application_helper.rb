@@ -26,15 +26,7 @@ module ApplicationHelper
   end
 
   def number_to_bitcoins(amount, options = {})
-    number_to_currency(amount, options.merge({:unit => "BTC"}))
-  end
-
-  def number_to_lrusd(amount, options = {})
-    number_to_currency(amount, options.merge({:unit => "LRUSD"}))
-  end
-
-  def number_to_lreur(amount, options = {})
-    number_to_currency(amount, options.merge({:unit => "LREUR"}))
+    number_to_human(amount, options) + " BTC"
   end
 
   def amount_field_value(amount)

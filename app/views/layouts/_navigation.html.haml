@@ -13,7 +13,7 @@
         = link_to t(".title"), root_path, :class => "brand"
         %ul.nav
           %li.divider-vertical
-          = menu_item ".trade", account_trade_orders_path, :logged_in => true
+          = menu_item ".trade", account_trade_orders_path
           = menu_item ".trading.order_book", order_book_path
 
           = menu_item ".help.main", nil do

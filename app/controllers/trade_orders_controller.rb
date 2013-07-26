@@ -31,7 +31,10 @@ class TradeOrdersController < ApplicationController
       redirect_to account_trade_orders_path,
         :notice => notice
     else
-      render :action => :new
+      @trade_orders = current_user.trade_orders.paginate(:page => params[:page], :per_page => 16)
+      @sales = _get_orders(CURRENCY, :sell)
+      @purchases = _get_orders(CURRENCY, :buy)
+      render :action => :index
     end
   end
 
