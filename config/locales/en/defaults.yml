@@ -184,7 +184,7 @@ en:
         body: "There were problems with the following fields:"
 
       messages:
-        taken: "has already been taken"
+        taken: "is already in use"
         record_invalid: "Validation failed: %{errors}"
         <<: *errors_messages
 

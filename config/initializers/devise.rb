@@ -3,7 +3,7 @@
 Devise.setup do |config|
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in DeviseMailer.
-  config.mailer_sender = "Bitcoin Central support <support@bitcoin-central.net>"
+  config.mailer_sender = "TradeBitcoin support <support@tradebitcoin.com>"
 
   # Configure the class responsible to send e-mails.
   # config.mailer = "Devise::Mailer"
@@ -20,10 +20,13 @@ Devise.setup do |config|
   # authenticating an user, both parameters are required. Remember that those
   # parameters are used only when authenticating and not when retrieving from
   # session. If you need permissions, you should implement that in a before filter.
-  config.authentication_keys = [ :name ]
+
+  # WARNING:
+  # take a look at models/user.rb before editing. Default behaviour is altered.
+  config.authentication_keys = [:name]
 
   # Tell if authentication through request.params is enabled. True by default.
-  # config.params_authenticatable = true
+  config.params_authenticatable = true
 
   # Tell if authentication through HTTP Basic Auth is enabled. True by default.
   config.http_authenticatable = true
@@ -32,7 +35,7 @@ Devise.setup do |config|
   config.http_authenticatable_on_xhr = true
 
   # The realm used in Http Basic Authentication
-  config.http_authentication_realm = "Bitcoin Central"
+  config.http_authentication_realm = "TradeBitcoin"
 
   # ==> Configuration for :database_authenticatable
   # For bcrypt, this is the cost for hashing the password and defaults to 10. If
@@ -46,7 +49,7 @@ Devise.setup do |config|
   config.encryptor = :bcrypt
 
   # Setup a pepper to generate the encrypted password.
-  config.pepper = "91ad1e1ce0cabde16074553f385b11635b09fb44495d546e75a025bb9671f2715f4642e21d4dcf5c10e9077d81fb14833f1a8d29a9aaaea831c348d7f9837aa5"
+  config.pepper = "g27g908q938rq98e7rhq98r7hq98er7h9qw87gh398457y987h9w87eh98e7wryq98w7rkslfgrlkdhjdlkzjhzkvbzgwelk"
 
   # ==> Configuration for :confirmable
   # The time you want to give your user to confirm his account. During this time
@@ -94,7 +97,7 @@ Devise.setup do |config|
 
   # Number of authentication tries before locking an account if lock_strategy
   # is failed attempts.
-  config.maximum_attempts = 3
+  config.maximum_attempts = 5
 
   # Time interval to unlock the account if :time is enabled as unlock_strategy.
   config.unlock_in = 24.hours

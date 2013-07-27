@@ -5,13 +5,14 @@ class YubikeysController < ApplicationController
   end
 
   def create
-    @yubikeys = current_user.yubikeys
-    @yubikey = current_user.yubikeys.new(:otp => params[:yubikey][:otp])
+    @yubikey = Yubikey.new(:otp => params[:yubikey][:otp])
+    @yubikey.user = current_user
 
     if @yubikey.save
       redirect_to user_yubikeys_path,
         :notice => t("yubikeys.index.created")
     else
+      @yubikeys = current_user.yubikeys
       render :action => :index
     end
   end
