@@ -28,46 +28,6 @@
       = f.time_zone_select :time_zone, nil, :prompt => "--"
       .help-inline= t(".time_zone_explanation")
 
-  .clearfix
-
-  - unless @user.new_record?
-    %fieldset
-      %legend= t(".additional_authentication_requirements")
-      .control-group
-        = f.label :require_ga_otp, :class => "control-label"
-        .controls
-          = f.check_box :require_ga_otp, :class => "checkbox"
-          .help-inline= link_to t(".ga_otp_config"), ga_otp_configuration_user_path
-
-      .control-group
-        = f.label :require_yk_otp, :class => "control-label"
-        .controls
-          = f.check_box :require_yk_otp, :class => "checkbox"
-          .help-inline= link_to t(".yk_otp_config"), user_yubikeys_path
-
-    %fieldset
-      %legend= t("activerecord.models.bank_account.other")
-      .control-group
-        .controls
-          %p= t(".registered_bank_accounts", :count => current_user.bank_accounts.count)
-          %p= link_to t(".manage_bank_accounts"), user_bank_accounts_path
-
-    %fieldset
-      %legend= t(".notifications")
-      .control-group
-        = f.label :notify_on_trade, :class => "control-label"
-        .controls
-          = f.check_box :notify_on_trade, :class => "checkbox"
-          .help-inline= t(".notify_on_trade_explanation")
-
-    %fieldset
-      %legend= t(".api_tools")
-      .control-group
-        = f.label :merchant, :class => "control-label"
-        .controls
-          = f.check_box :merchant, :class => "checkbox"
-          .help-inline= t(".merchant_explanation")
-
 
   - if @user.new_record?
     .recaptcha-field

@@ -3,9 +3,6 @@ BitcoinBank::Application.routes.draw do
 
   resource :user, :only => [:edit, :update] do
     get :ga_otp_configuration
-    post :reset_ga_otp_secret
-    put :update_password
-    get :edit_password
 
     resources :yubikeys, :only => [:index, :create, :destroy]
     resources :bank_accounts, :only => [:index, :create, :destroy]
@@ -90,6 +87,20 @@ BitcoinBank::Application.routes.draw do
   match '/economy' => 'home#economy', :as => :economy
 
   match '/support' => 'home#support', :as => :support
+  get '/user/yubikeys/enable', to: 'yubikeys#enable', as: 'yubikeys_enable'
+  get '/user/yubikeys/disable', to: 'yubikeys#disable', as: 'yubikeys_disable'
+  get '/user/gauth', to: 'gauth#index', as: 'gauth'
+  get '/user/gauth/reset', to: 'gauth#reset', as: 'gauth_reset'
+  get '/user/gauth/enable', to: 'gauth#enable', as: 'gauth_enable'
+  get '/user/gauth/disable', to: 'gauth#disable', as: 'gauth_disable'
+
+
+  get '/user/change_passsword', to: 'password#form', as: 'change_password'
+  put '/user/change_passsword', to: 'password#update', as: 'change_password'
+  post '/user/change_passsword', to: 'password#update', as: 'change_password'
+
+  get '/user/notification_settings', to: 'notification_settings#index', as: 'notification_settings'
+  put '/user/notification_settings', to: 'notification_settings#update', as: 'notification_settings'
 
   root :to => 'home#index'
 end

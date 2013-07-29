@@ -1,4 +1,5 @@
 class AccountsController < ApplicationController
+  layout 'account'
   respond_to :html, :json
   
   def show

@@ -66,6 +66,7 @@ class TradeOrdersController < ApplicationController
 
   def my_orders
     @trade_orders = current_user.trade_orders.paginate(:page => params[:page], :per_page => 16)
+    render layout: 'account'
   end
 
   def destroy

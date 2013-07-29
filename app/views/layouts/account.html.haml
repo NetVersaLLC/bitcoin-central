@@ -1,0 +1,26 @@
+- content_for :head do
+  = stylesheet_link_tag 'account'
+
+- content_for :content do
+  .row
+    .span3
+      .well.sidebar
+        %ul.nav.nav-list
+          %li.nav-header= t '.account.account'
+          = render_menu_item('.account.identity', edit_user_path)
+          = render_menu_item('.account.verification', '#')
+          = render_menu_item('.account.notifications', notification_settings_path)
+          %li.nav-header= t '.account.finance'
+          = render_menu_item(".finance.my_orders", my_orders_path)
+          = render_menu_item('.finance.balance', account_path)
+          = render_menu_item('.finance.deposit', deposit_account_path)
+          = render_menu_item('.finance.withdraw', new_account_transfer_path)
+          = render_menu_item('.finance.bank_accounts', user_bank_accounts_path)
+          = render_menu_item('.finance.history', account_transfers_path)
+          %li.nav-header= t '.account.security'
+          = render_menu_item('.security.password', change_password_path)
+          = render_menu_item('.security.gauth', gauth_path)
+          = render_menu_item('.security.yubikey', user_yubikeys_path)
+    .span9
+      = yield
+= render template: 'layouts/application'

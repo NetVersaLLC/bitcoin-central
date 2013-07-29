@@ -24,4 +24,5 @@
   - else
     = render :partial => "layouts/no_data"
 
-= will_paginate(@trades)
+.text-center
+  = will_paginate(@trades, renderer: BootstrapPagination::Rails)

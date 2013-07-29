@@ -3,7 +3,3 @@
 
 = render 'form'
 
-%br
-
-= form_for @user, :as => :user, :url => update_password_user_path, :html => {:class => "form-horizontal"} do |f|
-  = render :partial => 'password_change_form', :locals => { :f => f }

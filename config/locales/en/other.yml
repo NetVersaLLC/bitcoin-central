@@ -142,7 +142,7 @@ en:
   time_zone: Time zone
 
   # views/users/edit.html
-  account_details_title: Account details
+  account_details_title: Identity
 
   # views/users/index.html
   listing_users_title: Listing users

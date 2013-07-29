@@ -1,33 +1,45 @@
 .page-header
   %h2= t ".yubikeys"
-.row
-  .span6
+  .widget-container
+    %h4
+      = t ".status"
+      - if current_user.require_yk_otp
+        %span.text-success= t ".status_enabled"
+        %br
+        %br
+        = link_to t(".disable"), yubikeys_disable_path, :class => "btn btn-medium btn-warning"
+      - else
+        %span.text-warning= t ".status_disabled"
+        %br
+        %br
+        = link_to t(".enable"), yubikeys_enable_path, :class => "btn btn-medium btn-success"
+        .help-inline= t ".login_warning"
+
+  .widget-container
     %h3= t(".associate")
-    .widget-container
-      = form_for @yubikey, :url => user_yubikeys_path(@yubikey) do |f|
-        = errors_for @yubikey, :message => "yubikeys.index.error"
+    = form_for @yubikey, :url => user_yubikeys_path(@yubikey) do |f|
+      = errors_for @yubikey, :message => "yubikeys.index.error"
+      .control-group
+        = f.label :otp, :class => "control-label"
+        .controls
+          = f.text_field :otp, :class => "yk-otp", :value => ""
+          .help-block= t(".otp_explanation")
 
-        .control-group
-          = f.label :otp, :class => "control-label"
-          .controls
-            = f.text_field :otp, :class => "yk-otp", :value => ""
-            .help-block= t(".otp_explanation")
-  .span6
+  .widget-container
     %h3= t("activerecord.models.yubikey.other")
-    .widget-container
-      %table.table.table-striped
-        %thead
-          %tr
-            %th= t("activerecord.attributes.yubikey.key_id")
-            %th= t("activerecord.attributes.yubikey.created_at")
-            %th.auto-sized
+    %table.table.table-striped
+      %thead
+        %tr
+          %th= t("activerecord.attributes.yubikey.key_id")
+          %th= t("activerecord.attributes.yubikey.created_at")
+          %th.auto-sized
 
-        - unless @yubikeys.blank?
-          - @yubikeys.each do |yubikey|
-            %tr{ :class => cycle('even', 'odd') }
-              %td.fixed= yubikey.key_id
-              %td= l(yubikey.created_at, :format => :short)
-              %td.auto-sized= yubikey_delete(yubikey)
-        - else
-          = render :partial => "layouts/no_data"
+      - unless @yubikeys.blank?
+        - @yubikeys.each do |yubikey|
+          %tr{ :class => cycle('even', 'odd') }
+            %td.fixed= yubikey.key_id
+            %td= l(yubikey.created_at, :format => :short)
+            %td.auto-sized= yubikey_delete(yubikey)
+      - else
+        = render :partial => "layouts/no_data"
 

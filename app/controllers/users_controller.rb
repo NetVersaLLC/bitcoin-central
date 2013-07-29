@@ -1,4 +1,5 @@
-class UsersController < ApplicationController  
+class UsersController < ApplicationController
+  layout 'account'
   skip_before_filter :authenticate_user!,
     :only => [:new, :create]
 
@@ -37,22 +38,4 @@ class UsersController < ApplicationController
     end
   end
 
-  def reset_ga_otp_secret
-    current_user.generate_ga_otp_secret && current_user.save!
-
-    redirect_to ga_otp_configuration_user_path,
-      :notice => t("users.ga_otp_configuration.reset")
-  end
-  
-  def update_password
-    @user = current_user
-
-    if @user.update_with_password(params[:user])
-      sign_in(@user, :bypass => true)
-      
-      redirect_to edit_user_path, :notice => t("users.password_change_form.password_updated")
-    else
-      render :edit_password
-    end
-  end
 end

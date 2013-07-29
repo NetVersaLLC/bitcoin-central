@@ -1,0 +1,13 @@
+.page-header
+  %h2= t(".notifications")
+= form_for @user, :as => :user, :url => notification_settings_path, :html => {:class => "form-horizontal"} do |f|
+  = errors_for @user, :message => "error_updating_account"
+  .control-group
+    = f.label :notify_on_trade, :class => "control-label"
+    .controls
+      %label.checkbox
+        = f.check_box :notify_on_trade, :class => "checkbox"
+        = t(".notify_on_trade_explanation")
+  .control-group
+    .controls
+      = f.submit t(".submit"), :class => 'btn btn-success submit'

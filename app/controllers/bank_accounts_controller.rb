@@ -1,17 +1,19 @@
 class BankAccountsController < ApplicationController
+  layout 'account'
+
   def index
     @bank_accounts = current_user.bank_accounts
     @bank_account = BankAccount.new
   end
 
   def create
-    @bank_accounts = current_user.bank_accounts
-    @bank_account = current_user.bank_accounts.new(params[:bank_account])
-
+    @bank_account = BankAccount.new(params[:bank_account])
+    @bank_account.user = current_user
     if @bank_account.save
       redirect_to user_bank_accounts_path,
         :notice => t("bank_accounts.index.created")
     else
+      @bank_accounts = current_user.bank_accounts
       render :action => :index
     end
   end

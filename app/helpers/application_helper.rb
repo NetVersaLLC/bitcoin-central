@@ -19,6 +19,13 @@ module ApplicationHelper
       end
     end
   end
+
+  # account sidebar
+  def render_menu_item(label, path)
+    content_tag :li, :class => (path == request.path ? 'active' : '' ) do
+      link_to t(label), path
+    end
+  end
   
   # Checks whether the option should be displayed to the currently logged-in user
   def display_menu?(user, options)

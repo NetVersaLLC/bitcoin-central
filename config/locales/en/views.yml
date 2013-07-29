@@ -3,6 +3,15 @@ en:
     application:
       title: "TradeBitcoin"
       description: Buy, sell and store Bitcoins easily and safely on the best open-source platform
+    account:
+      account:
+        notifications: Notification settings
+      security:
+        password: Change password
+        gauth: Google Authenticator
+      finance:
+        my_orders: My orders
+        bank_accounts: Bank accounts
     navigation:
       title: TradeBitcoin
       index: Home
@@ -16,7 +25,6 @@ en:
         deposit: Deposit
         edit: Account settings
         logout: Logout
-        my_orders: My orders
       trading:
         main: Trading
         order_book: Order book
@@ -44,6 +52,10 @@ en:
         day_range: "Last 24h: <b>%{low} - %{high}</b>"
         day_volume: "Daily Volume: <b>%{btc} BTC</b> ( <b>%{usd} USD</b> )"
 
+  notification_settings:
+    notice_updated: "Notification settings has been updated"
+    index:
+      submit: "Update"
   invoices:
     new:
       create_invoice: Create an invoice
@@ -178,23 +190,32 @@ en:
       notifications: E-mail notifications
       notify_on_trade_explanation: Receive a notification when one of your trade orders gets matched
       error: Please correct following errors
-    ga_otp_configuration:
-      reset: The Google Authenticator shared-secret has been correctly reset, you should update your mobile device settings
-    password_change_form:
+  password:
+    form:
       change_password: Change your password
       submit: Submit
       password_updated: Your password has been updated successfully
       
 
+  gauth:
+    notice_enabled: Google Authenticator has been enabled
+    notice_disabled: Google Authenticator protection has been disabled
+    notice_reset: The Google Authenticator shared-secret has been correctly reset, you should update your mobile device settings
   yubikeys:
+    notice_enabled: Yubikey protection has been enabled
+    notice_disabled: Yubikey protection has been disabled
     index:
+      status: Yubikey protection is currently
+      status_enabled: enabled
+      status_disabled: disabled
+      login_warning: "Warning: you will not be able to login without Yubikey"
       create: Associate a Yubikey to your account
       delete: Delete this Yubikey
       confirm: Are you sure ?
       associate: Associate a new Yubikey
       otp_explanation: Simply generate an OTP here to associate your key
-      created: Yubikey associated, you'll need it for your next sign-in
-      destroyed: Yubikey removed
+      created: Yubikey has been associated
+      destroyed: Yubikey has been removed
       error: This key could not be associated to your account
 
   devise:

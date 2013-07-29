@@ -1,5 +1,20 @@
 .page-header
-  %h2 Required steps for TOTP authentication
+  %h2 TOTP authentication
+.widget-container
+  %h4
+    TOTP authentication status:
+    - if current_user.require_ga_otp
+      %span.text-success enabled
+      %br
+      %br
+      = link_to t(".disable"), gauth_disable_path, :class => "btn btn-medium btn-warning"
+    - else
+      %span.text-warning disabled
+      %br
+      %br
+      = link_to t(".enable"), gauth_enable_path, :class => "btn btn-medium btn-success"
+      .help-inline Warning: you will be unable to login without Google Authenticator
+
 
 %h3 Why use one-time-password authentication ?
 %p
@@ -19,8 +34,7 @@
 %p
   You will need to update your mobile device configuration.
 %p
-  = form_tag reset_ga_otp_secret_user_path, :method => :post do
-    = submit_tag "Reset shared-secret", :class => "submit btn btn-primary"
+  = link_to "Reset shared secret", gauth_reset_path, :class => "btn btn-primary"
 
 %h3 Configuration
 %p

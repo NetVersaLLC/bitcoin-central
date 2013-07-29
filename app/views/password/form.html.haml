@@ -1,5 +1,7 @@
-%fieldset
-  %legend= t(".change_password")
+.page-header
+  %h2= t(".change_password")
+= form_for @user, :as => :user, :url => change_password_path, :html => {:class => "form-horizontal"} do |f|
+  = errors_for @user, :message => "error_updating_account"
   .control-group
     = f.label :current_password, :class => "control-label"
     .controls
@@ -17,4 +19,5 @@
 
   .control-group
     .controls
-      = f.submit t(".submit"), :class => 'btn btn-success submit'
+      = f.submit t(".submit"), :class => 'btn btn-success'
+
