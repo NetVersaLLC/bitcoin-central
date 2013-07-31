@@ -14,6 +14,7 @@ gem 'sprockets'
 gem 'sass-rails', '3.1.5'
 gem 'coffee-rails'
 gem 'bower-rails'
+gem 'unicorn'
 
 gem 'recaptcha',
   :require => 'recaptcha/rails'

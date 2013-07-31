@@ -11,7 +11,7 @@ set :normalize_asset_timestamps, false # github fix
 set :ssh_options, { :forward_agent => true }
 
 set :scm, :git
-set :deploy_to, "~/app"
+set :deploy_to, "/home/tradeonline/app"
 
 set :use_sudo, false
 
