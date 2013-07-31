@@ -13,7 +13,7 @@ BitcoinBank::Application.configure do
   }
   
   config.middleware.use ::ExceptionNotifier,
-    :email_prefix => "[BC Exception] ",	 	
+    :email_prefix => "[TradeBitcoin Exception] ",
     :sender_address => %w{no-reply@test.tradebitcoin.com},
     :exception_recipients => %w{support@test.tradebitcoin.com}
   
@@ -21,7 +21,7 @@ BitcoinBank::Application.configure do
   config.base_url = "https://test.tradebitcoin.com/"
   
   config.assets.compress = true
-  config.assets.compile = false
+  config.assets.compile = true
   config.assets.digest = true
   config.serve_static_assets = false
 end
