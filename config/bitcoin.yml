@@ -4,6 +4,12 @@ development:
   url: http://localhost:8332/
   donations: 12SW1w5mvp9ExwMbM9kMwTbN4D9e75KQDr
   
+staging:
+  username: btcuser
+  password: btcpassword
+  url: http://localhost:8332/
+  donations: 12SW1w5mvp9ExwMbM9kMwTbN4D9e75KQDr
+
 test:
   username: bitcoin-admin
   password: 5MLpeupM46

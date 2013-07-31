@@ -5,6 +5,13 @@ development:
   username: root
   password:
 
+staging:
+  adapter: mysql2
+  encoding: utf8
+  database: tradeonline
+  username: tradeonline
+  password: 9g827h9287hREW
+
 test:
   adapter: mysql2
   encoding: utf8

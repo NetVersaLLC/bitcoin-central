@@ -11,8 +11,16 @@ development:
   # Pecunix POSTs here from the browser if payment was cancelled
   no_payment_url: http://localhost:3030/third_party_callbacks/px_cancel
 
+staging:
+  account: support@tradebitcoin.com
+  secret: secret word is secret
+  status_url: https://bitcoin-central.net/third_party_callbacks/px_status
+  payment_url: https://bitcoin-central.net/third_party_callbacks/px_payment
+  no_payment_url: https://bitcoin-central.net/third_party_callbacks/px_cancel
+
+
 test:
-  account: support@bitcoin-central.net
+  account: support@tradebitcoin.com
   secret: secret word is secret
   status_url: https://bitcoin-central.net/third_party_callbacks/px_status
   payment_url: https://bitcoin-central.net/third_party_callbacks/px_payment

@@ -1,5 +1,8 @@
 development:
   account: UA-XXXXXXXX-X
 
+staging:
+  account: UA-XXXXXXXX-X
+
 test:
   account: UA-XXXXXXXX-X

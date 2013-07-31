@@ -3,28 +3,60 @@ load 'deploy/assets'
 
 set :default_env, 'production'
 set :rails_env, ENV['rails_env'] || ENV['RAILS_ENV'] || default_env
+set :keep_releases, 5
 
-django = "django.webflows.fr"
-
-set :application, "bitcoin-bank"
-set :repository,  "git@github.com:davout/bitcoin-central.git"
+set :application, "tradebitcoin-online"
+set :repository,  "git@github.com:NetVersaLLC/bitcoin-central.git"
+set :normalize_asset_timestamps, false # github fix
+set :ssh_options, { :forward_agent => true }
 
 set :scm, :git
-set :deploy_to, "~/bitcoin-bank"
+set :deploy_to, "~/app"
 
 set :use_sudo, false
 
-set :user, "rails"
-set :scm_passphrase, Capistrano::CLI.password_prompt("Rails user password on django : ")
+set :user, "tradeonline"
 
-set :branch, "production"
 
-role :web, django
-role :app, django
-role :db,  django, :primary => true
+def production_prompt
+  puts "\n\e[0;31m   ######################################################################"
+  puts "   #\n   #       Are you REALLY sure you want to deploy to production?"
+  puts "   #\n   #               Enter y/N + enter to continue\n   #"
+  puts "   ######################################################################\e[0m\n"
+  proceed = STDIN.gets[0..0] rescue nil
+  exit unless proceed == 'y' || proceed == 'Y'
+end
+
+def staging_prompt
+  puts "\n\e[0;31m   ######################################################################"
+  puts "   #\n   #       Deploy to staging?     "
+  puts "   ######################################################################\e[0m\n"
+  proceed = STDIN.gets[0..0] rescue nil
+  exit unless proceed == 'y' || proceed == 'Y'
+end
+
+task :production do
+  #production_prompt
+  #set  :rails_env ,'production'
+  #set  :branch    ,'production'
+  #set  :host      ,'test.tradebitcoin.com'
+  #role :app       ,host
+  #role :web       ,host
+  #role :db        ,host, :primary => true
+end
+
+task :staging do
+  staging_prompt
+  set  :rails_env ,'staging'
+  set  :branch    ,'master'
+  set  :host      ,'test.tradebitcoin.com'
+  role :app       ,host
+  role :web       ,host
+  role :db        ,host, :primary => true
+end
 
 default_run_options[:pty] = true  # Must be set for the password prompt from git to work
-set :deploy_via, :remote_cache
+#set :deploy_via, :remote_cache
 set :git_enable_submodules, 1
 
 namespace :deploy do
@@ -38,6 +70,16 @@ namespace :deploy do
   task :update_crontab, :roles => :db do
     run "cd #{release_path} && bundle exec whenever --update-crontab #{application}"
   end
+
+  desc 'Running migrations'
+  task :migrations, :roles => :db do
+    run "cd #{release_path} && bundle exec rake db:migrate RAILS_ENV=#{rails_env}"
+  end
+
+  #desc 'Building assets'
+  #task :assets do
+  #  run "cd #{release_path} && bundle exec rake assets:precompile RAILS_ENV=#{rails_env}"
+  #end
 end
 
 task :copy_production_configurations do
@@ -54,8 +96,15 @@ task :remove_config_ru do
   run "rm -f #{release_path}/config.ru"
 end
 
-before 'deploy:assets:precompile', :copy_production_configurations
+
+#before 'deploy:assets:precompile', :copy_production_configurations
 
 after "deploy:update_code", :remove_config_ru
+after 'deploy', 'after_update_code'
+after 'deploy', 'deploy:migrations'
+after 'deploy:migrations', 'deploy:assets'
 after :remove_config_ru, "deploy:update_crontab"
 after "deploy:update_crontab", :symlink_bitcoin_bin_dir
+
+
+
