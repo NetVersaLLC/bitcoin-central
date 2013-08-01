@@ -135,10 +135,11 @@ en:
     show:
       add_funds: Deposit funds
     deposit:
+      your_bitcoin_address: "Your bitcon address:"
       not_available: SEPA wire deposits are currently unavailable
       deposit_bitcoins_title: Deposit Bitcoins
       deposit_bitcoins_body_html:
-        <p>Simply transfer funds to your address and they'll show up in your account after a couple of minutes. Your address is located in the upper right corner of the screen.
+        <p>Simply transfer funds to your address and they'll show up in your account after a couple of minutes.
         You will be able to use these funds after the transaction is confirmed (approximately %{estimation} minutes).</p>
       deposit_eur_title: Deposit with bank wire
       deposit_eur_body_html: "

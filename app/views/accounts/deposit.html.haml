@@ -1,54 +1,63 @@
 .page-header
-  %h2= t(".deposit_bitcoins_title")
-%p= t(".deposit_bitcoins_body_html", :estimation => Transfer::MIN_BTC_CONFIRMATIONS * 10)
+  %h2= t(".deposit")
+
+%h3= t(".deposit_bitcoins_title")
+.widget-container
+  %p= t(".your_bitcoin_address")
+  %b= @current_user.bitcoin_address
+  .qrcode
+    = image_tag qrcode_image_path(current_user.bitcoin_address)
+  %p= t(".deposit_bitcoins_body_html", :estimation => Transfer::MIN_BTC_CONFIRMATIONS * 10)
 
 %h3= t(".deposit_eur_title")
-%p= t(".deposit_eur_body_html")
+.widget-container
+  %p= t(".deposit_eur_body_html")
 
-%div#bank-info
-  - if (@bic && @iban && @account_holder)
-    %table
-      %tr
-        %th= t(".comment")
-        %td= current_user.name
-      %tr
-        %th= t(".account_holder")
-        %td.account-holder= @account_holder
-      %tr
-        %th
-        %td.account-holder-address= @account_holder_address
-      
-      %tr
-        %td{ :colspan => 2 } &nbsp;
+  %div#bank-info
+    - if (@bic && @iban && @account_holder)
+      %table
+        %tr
+          %th= t(".comment")
+          %td= current_user.name
+        %tr
+          %th= t(".account_holder")
+          %td.account-holder= @account_holder
+        %tr
+          %th
+          %td.account-holder-address= @account_holder_address
 
-      %tr
-        %th= t(".bic")
-        %td= @bic
-      %tr
-        %th= t(".iban")
-        %td= @iban
-      %tr
-        %th= t(".bank")
-        %td.bank= @bank
-      %tr
-        %th
-        %td.bank-address= @bank_address
+        %tr
+          %td{ :colspan => 2 } &nbsp;
 
-  - else
-    %p#unavailable= t(".not_available")
+        %tr
+          %th= t(".bic")
+          %td= @bic
+        %tr
+          %th= t(".iban")
+          %td= @iban
+        %tr
+          %th= t(".bank")
+          %td.bank= @bank
+        %tr
+          %th
+          %td.bank-address= @bank_address
+
+    - else
+      %p#unavailable= t(".not_available")
 
 %h3= t(".deposit_pgau_title")
-%p= t(".deposit_pgau_body_html")
+.widget-container
+  %p= t(".deposit_pgau_body_html")
 
-%br
+  %br
 
-= form_tag pecunix_deposit_form_account_path, :method => :get, :remote => true do
-  .control-group
-    = label_tag :amount, t(".pgau_amount"), :class => "control-label"
-    .controls
-      = text_field_tag :amount, nil
+  = form_tag pecunix_deposit_form_account_path, :method => :get, :remote => true do
+    .control-group
+      = label_tag :amount, t(".pgau_amount"), :class => "control-label"
+      .controls
+        = text_field_tag :amount, nil
 
-  .form-field
-    = submit_tag t(".deposit_pgau"), :class => "btn btn-success submit"
-  
-#pecunix-sci-form-container.hidden
+    .form-field
+      = submit_tag t(".deposit_pgau"), :class => "btn btn-success submit"
+
+  #pecunix-sci-form-container.hidden
