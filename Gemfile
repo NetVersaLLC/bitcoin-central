@@ -23,9 +23,8 @@ gem 'capistrano-unicorn', :require => false
 gem 'recaptcha',
   :require => 'recaptcha/rails'
 
-gem 'exception_notification',
-  :git => "git@github.com:rails/exception_notification.git",
-  :require => 'exception_notifier'
+gem 'exception_notification', :require => 'exception_notifier'
+
 
 gem 'transitions',
   :require => ["transitions", "active_record/transitions"]
