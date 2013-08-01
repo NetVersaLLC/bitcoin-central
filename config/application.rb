@@ -11,8 +11,7 @@ end
 module BitcoinBank
   class Application < Rails::Application
     I18n.const_set :Locales, {
-      :en => "English",
-      :fr => "Français"
+      :en => "English"
     }
 
     config.i18n.default_locale = :en

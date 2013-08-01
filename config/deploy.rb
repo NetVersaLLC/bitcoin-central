@@ -93,18 +93,14 @@ task :symlink_bitcoin_bin_dir do
   run "ln -s #{shared_path}/bin #{release_path}/public/bin"
 end
 
-task :remove_config_ru do
-  run "rm -f #{release_path}/config.ru"
-end
 
 
 #before 'deploy:assets:precompile', :copy_production_configurations
 
-after "deploy:update_code", :remove_config_ru
 after 'deploy', 'after_update_code'
 after 'deploy', 'deploy:migrations'
 after 'deploy:migrations', 'deploy:assets'
-after :remove_config_ru, "deploy:update_crontab"
+after 'deploy:update_code', "deploy:update_crontab"
 after "deploy:update_crontab", :symlink_bitcoin_bin_dir
 
 after 'deploy:restart', 'unicorn:reload' # app IS NOT preloaded

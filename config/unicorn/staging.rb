@@ -2,6 +2,7 @@
 
 worker_processes 3
 app_path = "/home/tradeonline/app/current"
+
 working_directory app_path
 
 # This loads the application in the master process before forking
