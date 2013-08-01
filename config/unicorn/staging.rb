@@ -1,7 +1,7 @@
 # http://michaelvanrooijen.com/articles/2011/06/01-more-concurrency-on-a-single-heroku-dyno-with-the-new-celadon-cedar-stack/
 
 worker_processes 3
-app_path "/home/tradeonline/app/current"
+app_path = "/home/tradeonline/app/current"
 working_directory app_path
 
 # This loads the application in the master process before forking
