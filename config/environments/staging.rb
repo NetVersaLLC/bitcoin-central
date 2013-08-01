@@ -5,7 +5,7 @@ BitcoinBank::Application.configure do
   config.action_dispatch.x_sendfile_header = "X-Sendfile"
   config.i18n.fallbacks = true
   config.active_support.deprecation = :notify
-  config.force_ssl = true
+  config.force_ssl = false
   
   config.action_mailer.delivery_method = :sendmail
   config.action_mailer.default_url_options = {
