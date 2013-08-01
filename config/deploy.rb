@@ -1,4 +1,5 @@
 require 'bundler/capistrano'
+require 'capistrano-unicorn'
 load 'deploy/assets'
 
 set :default_env, 'production'
@@ -106,5 +107,5 @@ after 'deploy:migrations', 'deploy:assets'
 after :remove_config_ru, "deploy:update_crontab"
 after "deploy:update_crontab", :symlink_bitcoin_bin_dir
 
-
-
+after 'deploy:restart', 'unicorn:reload' # app IS NOT preloaded
+after 'deploy:restart', 'unicorn:restart'  # app preloaded

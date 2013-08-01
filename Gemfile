@@ -6,7 +6,6 @@ gem 'mysql2'
 gem 'addressable'
 gem 'devise', '1.5.3'
 gem 'whenever'
-gem 'capistrano'
 gem 'active_scaffold'
 gem 'haml', '3.1.4'
 gem 'sass', '3.1.12'
@@ -15,6 +14,11 @@ gem 'sass-rails', '3.1.5'
 gem 'coffee-rails'
 gem 'bower-rails'
 gem 'unicorn'
+
+
+# fixme: load during deployment only
+gem 'capistrano'
+gem 'capistrano-unicorn', :require => false
 
 gem 'recaptcha',
   :require => 'recaptcha/rails'
