@@ -49,7 +49,7 @@ class InvoicesControllerTest < ActionController::TestCase
     Bitcoin::Client.instance.stubs(:get_new_address).returns("foo")
     Bitcoin::Util.stubs(:valid_bitcoin_address?).returns(true)
 
-    address = '1FXWhKPChEcUnSEoFQ3DGzxKe44MDbatz'
+    address = '12SW1w5mvp9ExwMbM9kMwTbN4D9e75KQDr'
       
     assert_difference 'Invoice.count' do
       post :create, :invoice => {

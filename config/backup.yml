@@ -1,4 +1,4 @@
-recipient: backup@bitcoin-central.net
+recipient: backup@tradebitcoin.com
 ftp_servers:
   server1:
     host: ftp.domain.tld
