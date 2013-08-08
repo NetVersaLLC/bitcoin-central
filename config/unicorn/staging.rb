@@ -22,7 +22,7 @@ rails_env = ENV['RAILS_ENV'] || 'staging'
 # We will point the upstream Nginx module to this socket later on
 listen "/home/tradeonline/app/shared/unicorn.sock", :backlog => 64
 
-pid "/home/tradeonline/app/shared/unicorn.pid"
+pid "/home/tradeonline/app/current/tmp/pids/unicorn.pid"
 
 # Set the path of the log files inside the log folder of the testapp
 stderr_path "/home/tradeonline/logs/unicorn-error.log"
