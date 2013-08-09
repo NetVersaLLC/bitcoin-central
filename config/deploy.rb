@@ -103,5 +103,5 @@ after 'deploy:migrations', 'deploy:assets'
 after 'deploy:update_code', "deploy:update_crontab"
 after "deploy:update_crontab", :symlink_bitcoin_bin_dir
 
-after 'deploy:restart', 'unicorn:reload' # app IS NOT preloaded
+#after 'deploy:restart', 'unicorn:reload' # app IS NOT preloaded
 after 'deploy:restart', 'unicorn:restart'  # app preloaded
