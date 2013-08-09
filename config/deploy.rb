@@ -97,7 +97,6 @@ end
 
 #before 'deploy:assets:precompile', :copy_production_configurations
 
-after 'deploy', 'after_update_code'
 after 'deploy', 'deploy:migrations'
 after 'deploy:migrations', 'deploy:assets'
 after 'deploy:update_code', "deploy:update_crontab"
