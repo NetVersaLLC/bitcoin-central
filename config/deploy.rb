@@ -98,7 +98,6 @@ end
 #before 'deploy:assets:precompile', :copy_production_configurations
 
 after 'deploy', 'deploy:migrations'
-after 'deploy:migrations', 'deploy:assets'
 after 'deploy:update_code', "deploy:update_crontab"
 after "deploy:update_crontab", :symlink_bitcoin_bin_dir
 
