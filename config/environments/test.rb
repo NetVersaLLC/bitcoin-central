@@ -20,6 +20,10 @@ BitcoinBank::Application.configure do
   # Disable request forgery protection in test environment
   config.action_controller.allow_forgery_protection    = false
 
+  # Raise exception on mass assignment protection for Active Record models
+  # uncomment this before test & commit
+  #config.active_record.mass_assignment_sanitizer = :strict
+
   # Tell Action Mailer not to deliver emails to the real world.
   # The :test delivery method accumulates sent emails in the
   # ActionMailer::Base.deliveries array.
