@@ -239,14 +239,14 @@ class TradeOrderTest < ActiveSupport::TestCase
       buy_order.execute!
     end
 
-    assert_equal trader1.balance(:btc), 99.24573
-    assert_equal trader1.balance(:lrusd), 0.0
-    assert_equal trader2.balance(:btc), 0.75427
-    assert_equal trader2.balance(:lrusd), 25.0
+    assert_equal 99.24573, trader1.balance(:btc).to_f
+    assert_equal 0.0, trader1.balance(:lrusd)
+    assert_equal 0.75427, trader2.balance(:btc).to_f
+    assert_equal 25.0, trader2.balance(:lrusd)
 
     assert !sell_order.reload.active?
     assert !buy_order .reload.active?
-    assert_equal buy_order.amount, 0.75427
+    assert_equal 0.75427, buy_order.amount
   end
 
   test "should correctly handle trade activation when insufficient balance" do

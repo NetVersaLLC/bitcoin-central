@@ -10,7 +10,7 @@ class ThirdPartyCallbacksControllerTest < ActionController::TestCase
       "PAYMENT_UNITS" => "GAU",
       "PAYMENT_REC_ID" => "123456",
       "PAYER_ACCOUNT" => "user@domain.com",
-      "PAYMENT_HASH" => "486A094C7DC2307A173BEB9158437E6134068022",
+      "PAYMENT_HASH" => "43E2AD1AFEEE07456E95AEF9C47CC382DF5CBE84",
       "PAYMENT_GRAMS" => "1.0000",
       "PAYMENT_ID" => "293383075",
       "PAYMENT_FEE" => "0.0000",

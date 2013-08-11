@@ -57,6 +57,7 @@ gem 'apn_on_rails',
   :branch => 'rails3'
 
 group :test do
+  gem 'minitest-reporters'
   gem 'mocha', :require => false
   gem 'factory_girl_rails', '1.7.0'
 end

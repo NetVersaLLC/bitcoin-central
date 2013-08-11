@@ -2,6 +2,7 @@ require 'test_helper'
 
 class HttpBasicAuthTest < ActionDispatch::IntegrationTest
   test "basic auth should be available and working" do
+    skip('basic auth is disabled')
     user = Factory(:user)
     headers = {}
     
@@ -24,6 +25,7 @@ class HttpBasicAuthTest < ActionDispatch::IntegrationTest
   end
   
   test "http basic auth should also work w account number" do
+    skip('basic auth is disabled')
     user = Factory(:user)
     
     # Correct HTTP Basic authentication header
@@ -35,6 +37,7 @@ class HttpBasicAuthTest < ActionDispatch::IntegrationTest
   end
   
   test "basic auth should not work with a second auth factor enabled" do
+    skip('basic auth is disabled')
     user = Factory(:user, :require_yk_otp => true)
     
     # Correct HTTP Basic authentication header

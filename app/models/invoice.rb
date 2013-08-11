@@ -105,7 +105,7 @@ class Invoice < ActiveRecord::Base
 
     http = Net::HTTP.new(uri.host, uri.port)
     http.use_ssl = (uri.scheme == "https")
-    http.verify_mode = OpenSSL::SSL::VERIFY_NONE if http.use_ssl
+    http.verify_mode = OpenSSL::SSL::VERIFY_NONE if http.use_ssl?
 
     request = Net::HTTP::Post.new(uri.request_uri)
 
