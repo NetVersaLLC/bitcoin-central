@@ -91,10 +91,10 @@ GEM
       actionmailer (>= 3.0.4)
     execjs (1.4.0)
       multi_json (~> 1.0)
-    factory_girl (4.2.0)
-      activesupport (>= 3.0.0)
-    factory_girl_rails (4.2.1)
-      factory_girl (~> 4.2.0)
+    factory_girl (2.6.4)
+      activesupport (>= 2.3.9)
+    factory_girl_rails (1.7.0)
+      factory_girl (~> 2.6.0)
       railties (>= 3.0.0)
     haml (3.1.4)
     highline (1.6.19)
@@ -214,7 +214,7 @@ DEPENDENCIES
   devise (= 1.5.3)
   exception_notification
   execjs
-  factory_girl_rails
+  factory_girl_rails (= 1.7.0)
   haml (= 3.1.4)
   iban-tools
   less-rails

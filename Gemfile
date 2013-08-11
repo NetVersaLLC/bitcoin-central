@@ -58,7 +58,7 @@ gem 'apn_on_rails',
 
 group :test do
   gem 'mocha', :require => false
-  gem 'factory_girl_rails'
+  gem 'factory_girl_rails', '1.7.0'
 end
 
 group :assets do
