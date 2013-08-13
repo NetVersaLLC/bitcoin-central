@@ -6,7 +6,7 @@ class TradeOrder < ActiveRecord::Base
 
   attr_accessor :skip_min_amount
 
-  attr_accessible :amount, :currency, :category, :dark_pool, :ppc, :type
+  attr_accessible :amount, :currency, :category, :dark_pool, :ppc
 
   default_scope order('created_at DESC')
 
