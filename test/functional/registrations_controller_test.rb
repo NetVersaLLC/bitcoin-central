@@ -9,7 +9,7 @@ class RegistrationsControllerTest < ActionController::TestCase
      User.any_instance.stubs(:skip_captcha).returns(true)
     
     assert_difference "ActionMailer::Base.deliveries.size" do
-      assert_difference "User.count" do        
+      assert_difference "User.count" do
         post :create, :user => {
           :email => "user@example.com",
           :password => "123456",

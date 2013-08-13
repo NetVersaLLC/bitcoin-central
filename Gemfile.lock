@@ -83,10 +83,11 @@ GEM
       yamler (>= 0.1.0)
     delayed_job (4.0.0)
       activesupport (>= 3.0, < 4.1)
-    devise (1.5.3)
+    devise (2.0.5)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.0.3)
-      warden (~> 1.1)
+      railties (~> 3.1)
+      warden (~> 1.1.1)
     erubis (2.7.0)
     exception_notification (4.0.0)
       actionmailer (>= 3.0.4)
@@ -202,7 +203,7 @@ GEM
       kgio (~> 2.6)
       rack
       raindrops (~> 0.7)
-    warden (1.2.3)
+    warden (1.1.1)
       rack (>= 1.0)
     whenever (0.8.4)
       activesupport (>= 2.3.4)
@@ -225,7 +226,7 @@ DEPENDENCIES
   capistrano-unicorn
   coffee-rails
   delayed_job
-  devise (= 1.5.3)
+  devise (= 2.0.5)
   exception_notification
   execjs
   factory_girl_rails (= 1.7.0)

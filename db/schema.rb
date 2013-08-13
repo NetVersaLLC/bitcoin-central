@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130713144131) do
+ActiveRecord::Schema.define(:version => 20130813152342) do
 
   create_table "account_operations", :force => true do |t|
     t.string   "type"
@@ -57,7 +57,6 @@ ActiveRecord::Schema.define(:version => 20130713144131) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string   "reset_password_token"
-    t.string   "remember_token"
     t.datetime "remember_created_at"
     t.integer  "sign_in_count",                                         :default => 0
     t.datetime "current_sign_in_at"
@@ -81,6 +80,7 @@ ActiveRecord::Schema.define(:version => 20130713144131) do
     t.integer  "last_notified_trade_id",                                :default => 0,     :null => false
     t.integer  "max_read_tx_id",                                        :default => 0,     :null => false
     t.decimal  "commission_rate",        :precision => 16, :scale => 8
+    t.datetime "reset_password_sent_at"
   end
 
   add_index "accounts", ["email"], :name => "index_users_on_email", :unique => true

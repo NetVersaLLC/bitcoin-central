@@ -6,6 +6,8 @@ class Transfer < AccountOperation
   
   after_create :execute
 
+  attr_accessible :bic, :full_name_and_address
+
   validates :amount,
     :numericality => true,
     :user_balance => true,

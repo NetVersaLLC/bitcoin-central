@@ -25,6 +25,8 @@ Devise.setup do |config|
   # take a look at models/user.rb before editing. Default behaviour is altered.
   config.authentication_keys = [:name]
 
+  config.case_insensitive_keys = [:email]
+
   # Tell if authentication through request.params is enabled. True by default.
   config.params_authenticatable = true
 
@@ -48,6 +50,10 @@ Devise.setup do |config|
   # (then you should set stretches to 10, and copy REST_AUTH_SITE_KEY to pepper)
   config.encryptor = :bcrypt
 
+  config.use_salt_as_remember_token = true
+
+  config.reset_password_within = 6.hours
+
   # Setup a pepper to generate the encrypted password.
   config.pepper = "g27g908q938rq98e7rhq98r7hq98er7h9qw87gh398457y987h9w87eh98e7wryq98w7rkslfgrlkdhjdlkzjhzkvbzgwelk"
 
@@ -58,14 +64,12 @@ Devise.setup do |config|
   # You can use this to let your user access some features of your application 
   # without confirming the account, but blocking it after a certain period 
   # (ie 2 days). 
-  config.confirm_within = 0
+  config.allow_unconfirmed_access_for = 0
 
   # ==> Configuration for :rememberable
   # The time the user will be remembered without asking for credentials again.
   # config.remember_for = 2.days
 
-  # If true, a valid remember token can be re-used between multiple browsers.
-  config.remember_across_browsers = true
 
   # If true, extends the user's remember period when remembered via cookie.
   # config.extend_remember_period = false

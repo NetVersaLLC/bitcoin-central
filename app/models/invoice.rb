@@ -6,7 +6,7 @@ class Invoice < ActiveRecord::Base
 
   default_scope order("created_at DESC")
 
-  attr_accessible :amount, :callback_url, :item_url, :merchant_reference, :merchant_memo
+  attr_accessible :amount, :callback_url, :item_url, :merchant_reference, :merchant_memo, :payment_address
   
   belongs_to :user
   
@@ -43,7 +43,6 @@ class Invoice < ActiveRecord::Base
   end
   
   attr_protected :user_id, 
-    :payment_address,
     :authentication_token,
     :state,
     :reference
