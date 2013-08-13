@@ -25,6 +25,8 @@ Devise.setup do |config|
   # take a look at models/user.rb before editing. Default behaviour is altered.
   config.authentication_keys = [:name]
 
+  config.reconfirmable = true
+
   config.case_insensitive_keys = [:email]
 
   # Tell if authentication through request.params is enabled. True by default.
@@ -49,8 +51,6 @@ Devise.setup do |config|
   # you should set stretches above to 20 for default behavior) and :restful_authentication_sha1
   # (then you should set stretches to 10, and copy REST_AUTH_SITE_KEY to pepper)
   config.encryptor = :bcrypt
-
-  config.use_salt_as_remember_token = true
 
   config.reset_password_within = 6.hours
 

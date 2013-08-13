@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130813152342) do
+ActiveRecord::Schema.define(:version => 20130813161831) do
 
   create_table "account_operations", :force => true do |t|
     t.string   "type"
@@ -81,6 +81,7 @@ ActiveRecord::Schema.define(:version => 20130813152342) do
     t.integer  "max_read_tx_id",                                        :default => 0,     :null => false
     t.decimal  "commission_rate",        :precision => 16, :scale => 8
     t.datetime "reset_password_sent_at"
+    t.string   "unconfirmed_email"
   end
 
   add_index "accounts", ["email"], :name => "index_users_on_email", :unique => true
