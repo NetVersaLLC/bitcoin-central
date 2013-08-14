@@ -38,24 +38,6 @@ class TransfersControllerTest < ActionController::TestCase
     assert JSON.parse(response.body)["id"]   
   end
 
-  test "should withdraw liberty reserve" do
-    user = login_with(Factory(:user))
-    add_money(user, 1000.0, :lrusd)
-
-    LibertyReserve::Client.instance.stubs(:transfer).returns({ 'TransferResponse' => { 'Receipt' => { 'ReceiptId' => "foo" }}})
-    LibertyReserve::Client.instance.stubs(:get_balance).returns(BigDecimal("1000"))
-
-    assert_difference "LibertyReserveTransfer.count" do
-      assert_difference "user.balance(:lrusd)", BigDecimal("-500") do
-        post :create, :transfer => {
-          :currency => "LRUSD",
-          :amount => "500",
-          :lr_account_id => "X321695"
-        }
-      end
-    end
-  end
-
   test "should withdraw with wire transfer" do
     user = login_with(Factory(:user))
     add_money(user, 1000.0, :eur)
@@ -109,14 +91,13 @@ class TransfersControllerTest < ActionController::TestCase
 
   test "transaction should get rolled back if transfer is not valid" do
     user = login_with(Factory(:user))
+    bank_account = Factory(:bank_account, :user => user)
 
     assert_no_difference 'Operation.count' do
       post :create, :transfer => {
         :amount => "500",
         :currency => "EUR",
-        :iban => "321654",
-        :bic => "FOO",
-        :full_name_and_address => "Dave"
+        :bank_acocunt_id => bank_account.id
       }
     end
   end

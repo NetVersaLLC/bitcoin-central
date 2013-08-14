@@ -50,11 +50,10 @@ class InvoicesControllerTest < ActionController::TestCase
     Bitcoin::Util.stubs(:valid_bitcoin_address?).returns(true)
 
     address = '12SW1w5mvp9ExwMbM9kMwTbN4D9e75KQDr'
-      
+
     assert_difference 'Invoice.count' do
       post :create, :invoice => {
         :amount => 100,
-        :payment_address => address,
         :callback_url => "http://domain.tld"
       }
       

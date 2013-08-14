@@ -76,7 +76,7 @@ Factory.define :invoice do |invoice|
   
   invoice.to_create { |i|
     Bitcoin::Util.stubs(:valid_bitcoin_address?).returns(true)
-    i.stubs(:generate_payment_address)
+    i.stubs(:generate_payment_address).returns('mvWJVFAvXjjz2mBgh1kuCE5VVr7nWcFiMR')
     i.save!
   }
 end
