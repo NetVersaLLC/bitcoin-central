@@ -19,8 +19,8 @@ BitcoinBank::Application.configure do
   
   # Used to broadcast invoices public URLs
   config.base_url = "https://tradebitcoin.com/"
-  
-  config.assets.compress = true
+
+  config.assets.js_compressor = :uglifier
   config.assets.compile = false
   config.assets.digest = true
   config.serve_static_assets = false

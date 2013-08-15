@@ -12,7 +12,7 @@ module TradeOrdersHelper
       account_trade_order_path(trade_order),
       :method => :delete,
       :class => "delete",
-      :confirm => t(".delete_order_confirm")
+      :data => {confirm: t(".delete_order_confirm")}
   end
 
   def activate_link_for(trade_order)
@@ -20,7 +20,7 @@ module TradeOrdersHelper
       account_trade_order_activate_path(trade_order),
       :method => :post,
       :class => "activate",
-    :confirm => t(".activate_order_confirm")
+      :data => {confirm: t(".activate_order_confirm")}
   end
 
   def format_amount(amount, currency, precision = 4)

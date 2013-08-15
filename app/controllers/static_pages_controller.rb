@@ -5,7 +5,7 @@ class StaticPagesController < ApplicationController
     @static_page = StaticPage.get_page(params[:name], I18n.locale)
 
     unless @static_page
-      raise ActionController::RoutingError.new('Not Found')
+      raise ActionDispatch::RoutingError.new('Not Found')
     end
   end
 end

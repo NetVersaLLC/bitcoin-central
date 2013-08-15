@@ -1,21 +1,25 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.2.14'
+gem 'rails', '4.0.0'
 gem 'rake'
 gem 'mysql2'
+gem  'activerecord-session_store'
 gem 'addressable'
 gem 'devise', '3.0.2'
 gem 'devise-encryptable'
 gem 'whenever'
-gem 'active_scaffold'
-gem 'haml', '3.2.0.rc.4'
-gem 'sass', '3.2.10'
+gem 'active_scaffold',
+  :git => 'https://github.com/activescaffold/active_scaffold.git',
+  :branch => 'rails4'
+gem 'haml'
+gem 'sass'
 gem 'sprockets'
-gem 'sass-rails', '3.2.3'
+gem 'sass-rails'
 gem 'coffee-rails'
 gem 'jquery-rails'
 gem 'bower-rails'
 gem 'unicorn'
+gem 'protected_attributes' # rails 4 migration: remove this after fixing everything else
 
 
 # fixme: load during deployment only
@@ -50,13 +54,7 @@ gem 'bourbon'
 gem 'less-rails'
 
 # File attachment with database storage support
-gem 'paperclip', 
-  :git => 'https://github.com/patshaughnessy/paperclip.git'
-
-# Apple push notifications
-gem 'apn_on_rails',
-  :git => 'https://github.com/natescherer/apn_on_rails.git',
-  :branch => 'rails3'
+gem 'paperclip'
 
 group :test do
   gem 'minitest-reporters'
@@ -64,8 +62,7 @@ group :test do
   gem 'factory_girl_rails', '1.7.0'
 end
 
-group :assets do
-  gem 'uglifier'
-  gem 'execjs'
-  gem 'therubyracer'
-end
+# assets
+gem 'uglifier'
+gem 'execjs'
+gem 'therubyracer'

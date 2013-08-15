@@ -4,7 +4,7 @@ module InvoicesHelper
   end
   
   def invoice_delete(invoice)
-    link_to(image_tag("delete.png", :alt => t(".delete"), :title => t(".delete")), invoice_path(invoice), :method => :delete, :confirm => t(".confirm"))
+    link_to(image_tag("delete.png", :alt => t(".delete"), :title => t(".delete")), invoice_path(invoice), :method => :delete, data: {confirm: t(".confirm")})
   end
 
   def invoice_state(state, options = {})   

@@ -24,11 +24,10 @@ BitcoinBank::Application.routes.draw do
   end
 
   resource :account, :only => [:show] do
-    match '/balance/:currency',
+    get '/balance/:currency',
       :action => 'balance',
-      :as => 'balance',
-      :only => :get
-      
+      :as => 'balance'
+
     get :deposit
     get :pecunix_deposit_form
     
@@ -44,9 +43,9 @@ BitcoinBank::Application.routes.draw do
     end
   end
 
-  match "/s/:name" => "static_pages#show", :as => :static
+  get "/s/:name" => "static_pages#show", :as => :static
   
-  match '/third_party_callbacks/:action',
+  post '/third_party_callbacks/:action',
     :controller => :third_party_callbacks
 
   namespace :admin do
@@ -72,35 +71,35 @@ BitcoinBank::Application.routes.draw do
       end
     end
     
-    match '/balances', :to => 'home#balances', :as => :balances
+    get '/balances', :to => 'home#balances', :as => :balances
   end
   
-  match '/qrcode/:data.png' => 'qrcodes#show', :as => :qrcode
+  get '/qrcode/:data.png' => 'qrcodes#show', :as => :qrcode
   
-  match '/order_book' => 'trade_orders#book'
-  match '/my_orders' => 'trade_orders#my_orders', :as => :my_orders
+  get '/order_book' => 'trade_orders#book'
+  get '/my_orders' => 'trade_orders#my_orders', :as => :my_orders
 
-  match '/trades' => 'trades#all_trades'
+  get '/trades' => 'trades#all_trades'
 
-  match '/ticker' => 'trades#ticker'
+  get '/ticker' => 'trades#ticker'
 
-  match '/economy' => 'home#economy', :as => :economy
+  get '/economy' => 'home#economy', :as => :economy
 
-  match '/support' => 'home#support', :as => :support
-  get '/user/yubikeys/enable', to: 'yubikeys#enable', as: 'yubikeys_enable'
-  get '/user/yubikeys/disable', to: 'yubikeys#disable', as: 'yubikeys_disable'
-  get '/user/gauth', to: 'gauth#index', as: 'gauth'
-  get '/user/gauth/reset', to: 'gauth#reset', as: 'gauth_reset'
-  get '/user/gauth/enable', to: 'gauth#enable', as: 'gauth_enable'
-  get '/user/gauth/disable', to: 'gauth#disable', as: 'gauth_disable'
+  get '/support' => 'home#support', :as => :support
+  get '/user/yubikeys/enable', to: 'yubikeys#enable', as: :yubikeys_enable
+  get '/user/yubikeys/disable', to: 'yubikeys#disable', as: :yubikeys_disable
+  get '/user/gauth', to: 'gauth#index', as: :gauth
+  get '/user/gauth/reset', to: 'gauth#reset', as: :gauth_reset
+  get '/user/gauth/enable', to: 'gauth#enable', as: :gauth_enable
+  get '/user/gauth/disable', to: 'gauth#disable', as: :gauth_disable
 
 
-  get '/user/change_passsword', to: 'password#form', as: 'change_password'
-  put '/user/change_passsword', to: 'password#update', as: 'change_password'
-  post '/user/change_passsword', to: 'password#update', as: 'change_password'
+  get '/user/change_passsword', to: 'password#form', as: :change_password
+  patch '/user/change_passsword', to: 'password#update', as: :change_password_patch
+  post '/user/change_passsword', to: 'password#update', as: :change_password_post
 
-  get '/user/notification_settings', to: 'notification_settings#index', as: 'notification_settings'
-  put '/user/notification_settings', to: 'notification_settings#update', as: 'notification_settings'
+  get '/user/notification_settings', to: 'notification_settings#index', as: :notification_settings
+  patch '/user/notification_settings', to: 'notification_settings#update', as: :notification_settings_patch
 
   root :to => 'home#index'
 end
