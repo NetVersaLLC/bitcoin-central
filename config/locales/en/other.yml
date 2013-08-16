@@ -14,7 +14,7 @@ en:
   no_data: No data has been found
 
   # controllers/home_controller.rb
-  chart_date_format: %m/%d
+  chart_date_format: "%m/%d"
 
   # controllers/sessions_controller.rb
   sign_in_success: You logged-in successfully to your account.
@@ -50,7 +50,7 @@ en:
   # helpers/transfers_helper.rb
   confirmations_left:
     one: 1 confirmation left
-    other: %{count} confirmations left
+    other: "%{count} confirmations left"
 
   # mailers/backup_mailer.rb
   support_from: TradeBitcoin support <%{support_email}>
