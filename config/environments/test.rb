@@ -45,4 +45,6 @@ BitcoinBank::Application.configure do
   
   config.assets.compress = true
   config.assets.debug = true
+  config.cache_store = :memory_store
+  config.eager_load = false
 end

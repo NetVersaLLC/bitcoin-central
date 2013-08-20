@@ -39,7 +39,9 @@ class AccountOperationTest < ActiveSupport::TestCase
       stubs(:list_transactions).
       returns([tx], [tx])
 
-    Account.stubs(:all).returns(User.where("id = ?", user.id))
+    all = User.where("id = ?", user.id)
+    User.stubs(:all).returns(all)
+    Account.stubs(:all).returns(all)
 
     Bitcoin::Client.instance.
       stubs(:get_new_address).

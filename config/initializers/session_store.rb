@@ -1,3 +1,3 @@
-BitcoinBank::Application.config.session_store :active_record_store, 
+BitcoinBank::Application.config.session_store :cache_store,
   :key => "bc-session",
   :domain => :all

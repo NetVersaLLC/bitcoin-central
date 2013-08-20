@@ -19,10 +19,6 @@ BitcoinBank::Application.configure do
   # Raise exception on mass assignment protection for Active Record models
   config.active_record.mass_assignment_sanitizer = :strict
 
-  # Log the query plan for queries taking more than this (works
-  # with SQLite, MySQL, and PostgreSQL)
-  config.active_record.auto_explain_threshold_in_seconds = 0.5
-
   # Only use best-standards-support built into browsers
   config.action_dispatch.best_standards_support = :builtin
 
@@ -41,6 +37,7 @@ BitcoinBank::Application.configure do
   # Used to broadcast invoices public URLs
   config.base_url = "http://lvh.me:3000/"
 
-  config.cache_store = nil
+  config.cache_store = :memory_store
+  config.eager_load = false
 end
 

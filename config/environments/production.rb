@@ -24,4 +24,6 @@ BitcoinBank::Application.configure do
   config.assets.compile = false
   config.assets.digest = true
   config.serve_static_assets = false
+  config.cache_store = :mem_cache_store
+  config.eager_load = true
 end
