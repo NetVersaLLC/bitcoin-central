@@ -8,7 +8,6 @@ Factory.define :user do |user|
   user.email                  { |u| "#{u.name}@domain.tld" }
   user.password               "password"
   user.password_confirmation  { |u| u.password }
-  user.skip_captcha           true
   user.confirmed_at           DateTime.now
   user.merchant               false
   user.sequence(:bitcoin_address)     { |n| "1FXWhKPChEcUnSEoFQ3DGzxKe44MDbat#{n}" }
@@ -20,7 +19,6 @@ Factory.define :manager do |user|
   user.email                  { |u| "#{u.name}@domain.tld" }
   user.password               "password"
   user.password_confirmation  { |u| u.password }
-  user.skip_captcha           true
   user.confirmed_at           DateTime.now
   user.merchant               false
   user.sequence(:bitcoin_address)     { |n| "1FXWhKPChEcUnSEoFQ3DGzxKe44MDbat#{n}" }
@@ -31,7 +29,6 @@ Factory.define :admin do |user|
   user.email                  { |u| "#{u.name}@domain.tld" }
   user.password               "password"
   user.password_confirmation  { |u| u.password }
-  user.skip_captcha           true
   user.confirmed_at           DateTime.now
   user.merchant               false
   user.sequence(:bitcoin_address)     { |n| "1FXWhKPChEcUnSEoFQ3DGzxKe44MDbat#{n}" }

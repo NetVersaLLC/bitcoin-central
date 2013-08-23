@@ -155,7 +155,8 @@ class TradeOrder < ActiveRecord::Base
     if !TradeOrder::TYPES.include?(trade_order_type.to_sym)
       raise "No match found for #{trade_order_type}"
     end
-    
+
+    params.delete :type
     "#{trade_order_type}".camelize.constantize.new(params)
   end
   

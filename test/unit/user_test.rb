@@ -6,7 +6,6 @@ class UserTest < ActiveSupport::TestCase
       u.email = "email@domain.tld"
       u.password = "123456"
       u.password_confirmation = "123456"
-      u.skip_captcha = true
     end
   end
   

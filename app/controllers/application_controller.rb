@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
+  before_filter :configure_permitted_parameters, if: :devise_controller?
 
   helper :all
 
@@ -45,5 +46,14 @@ class ApplicationController < ActionController::Base
     if params[:action] == 'visitor' || (params[:controller] == "accounts" && params[:action] == "show")
       @announcements = Announcement.active.all
     end
+  end
+
+  protected
+
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:email, :password, :password_confirmation, :time_zone) }
+    devise_parameter_sanitizer.for(:sign_in) { |u| u.permit(:name, :password, :ga_otp, :yk_otp) }
+    #devise_parameter_sanitizer.for(:account_update) { |u| u.permit! }
+
   end
 end

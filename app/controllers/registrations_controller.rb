@@ -1,17 +1,15 @@
 class RegistrationsController < Devise::RegistrationsController
+
   def create
-    build_resource
-    
-    resource.email = params[:user][:email]
-
-    verify_recaptcha and resource.captcha_checked!
-
-    if resource.save
-      redirect_to root_path,
-        :notice => t("devise.registrations.signed_up")
+    if verify_recaptcha
+      super
     else
+      build_resource(sign_up_params)
+      resource.valid? # required to display errors
+      resource.errors[:captcha] = I18n.t("errors.answer_incorrect")
       clean_up_passwords(resource)
       render :new
     end
   end
+
 end

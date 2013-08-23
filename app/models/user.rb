@@ -12,15 +12,14 @@ class User < Account
     :lockable,
     :timeoutable
 
-  # Setup accessible (or protected) attributes for your model
-  attr_accessible :password, :password_confirmation, :remember_me, :time_zone, 
-    :merchant, :require_ga_otp, :require_yk_otp, :full_name, :address
+  #Setup accessible (or protected) attributes for your model
+  attr_accessible :password, :password_confirmation, :remember_me, :time_zone,
+    :merchant, :require_ga_otp, :require_yk_otp, :full_name, :address,
+    :email, :name, :ga_otp, :yk_otp
 
-  attr_accessor :captcha,
-    :skip_captcha,
-    :new_password,
-    :new_password_confirmation,
-    :current_password
+  attr_accessor :new_password,
+      :new_password_confirmation,
+      :current_password
 
   before_validation :generate_name,
     :on => :create
@@ -51,18 +50,6 @@ class User < Account
   validates :email,
     :uniqueness => true,
     :presence => true
-
-  validate :captcha do
-    if captcha.nil? and new_record?
-      unless skip_captcha
-        errors[:captcha] << I18n.t("errors.answer_incorrect")
-      end
-    end
-  end
-
-  def captcha_checked!
-    self.captcha = true
-  end
 
   def bitcoin_address
     super or (generate_new_address && super)
