@@ -21,9 +21,6 @@ gem 'unicorn'
 gem 'protected_attributes' # rails 4 migration: remove this after fixing everything else
 
 
-# fixme: load during deployment only
-gem 'capistrano'
-gem 'capistrano-unicorn', :require => false
 
 gem 'recaptcha',
   :require => 'recaptcha/rails'
@@ -64,6 +61,10 @@ end
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem 'rvm-capistrano'
+  gem 'capistrano'
+  gem 'capistrano-unicorn', :require => false
+  gem 'awesome_print'
 end
 
 # assets
