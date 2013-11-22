@@ -49,7 +49,7 @@ end
 task :staging do
   staging_prompt
   set  :rails_env ,'staging'
-  set  :branch    ,'master'
+  set  :branch    ,'rails4'
   set  :host      ,'test.tradebitcoin.com'
   role :app       ,host
   role :web       ,host

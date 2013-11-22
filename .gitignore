@@ -11,3 +11,4 @@ public/**/active_scaffold
 public/blank.html
 .idea/
 /.sass-cache/
+.elasticbeanstalk/
