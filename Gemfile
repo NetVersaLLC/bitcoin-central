@@ -19,6 +19,7 @@ gem 'jquery-rails'
 gem 'bower-rails'
 gem 'unicorn'
 gem 'protected_attributes' # rails 4 migration: remove this after fixing everything else
+gem 'dalli' # mem_cache_store adapter
 
 
 
