@@ -25,8 +25,8 @@ listen "/home/tradeonline/app/shared/unicorn.sock", :backlog => 64
 pid "/home/tradeonline/app/current/tmp/pids/unicorn.pid"
 
 # Set the path of the log files inside the log folder of the testapp
-stderr_path "/home/tradeonline/logs/unicorn-error.log"
-stdout_path "/home/tradeonline/logs/unicorn-out.log"
+stderr_path "/home/tradeonline/app/shared/log/unicorn-error.log"
+stdout_path "/home/tradeonline/app/shared/log/unicorn-out.log"
 
 before_fork do |server, worker|
   ActiveRecord::Base.connection.disconnect!
