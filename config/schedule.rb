@@ -1,4 +1,5 @@
-set :environment, ENV['RAILS_ENV']
+#set :environment, ENV['RAILS_ENV']
+set :environment, 'staging'
 job_type :rake, "cd :path && RAILS_ENV=:environment bundle exec rake :task :output"
 
 every 2.minutes do
