@@ -2,7 +2,7 @@ require 'digest'
 
 class AccountOperation < ActiveRecord::Base
   CURRENCIES = %w{ EUR USD LREUR LRUSD BTC PGAU INR CAD }
-  MIN_BTC_CONFIRMATIONS = 4
+  MIN_BTC_CONFIRMATIONS = 1
 
   default_scope order('`account_operations`.`created_at` DESC')
 
@@ -18,7 +18,7 @@ class AccountOperation < ActiveRecord::Base
   validates :amount,
     :presence => true,
     :user_balance => true
-  
+
   validates :currency,
     :presence => true,
     :inclusion => { :in => CURRENCIES}

@@ -1,3 +1,5 @@
+require 'awesome_print'
+
 class Operation < ActiveRecord::Base
   has_many :account_operations
 

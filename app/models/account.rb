@@ -1,4 +1,6 @@
 class Account < ActiveRecord::Base
+  after_create :add_initial_credit
+
   has_many :account_operations
 
   has_many :used_currencies,
@@ -39,6 +41,28 @@ class Account < ActiveRecord::Base
       Account.create! do |a|
         a.name = account_name
       end
+    end
+  end
+
+  def add_initial_credit
+    Operation.transaction do
+      o = Operation.create
+
+      amount = 10000
+
+      o.account_operations << AccountOperation.new do |a|
+        a.amount = BigDecimal(amount)
+        a.currency = 'USD'
+        a.account_id = self.id
+      end
+
+      o.account_operations <<  AccountOperation.new do |a|
+        a.amount = -BigDecimal(amount)
+        a.currency = 'USD'
+        a.account = Account.storage_account_for('USD')
+      end
+
+      o.save!
     end
   end
 end
