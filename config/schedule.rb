@@ -1,4 +1,4 @@
-set :environment, rails_env
+set :environment, ENV['RAILS_ENV']
 job_type :rake, "cd :path && RAILS_ENV=:environment bundle exec rake :task :output"
 
 every 2.minutes do
