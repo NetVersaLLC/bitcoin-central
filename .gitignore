@@ -11,3 +11,8 @@ public/**/active_scaffold
 public/blank.html
 .idea/
 /.sass-cache/
+
+config/bitcoin.yml
+config/database.yml
+config/recaptcha.yml
+config/yubico.yml
