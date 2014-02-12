@@ -59,6 +59,9 @@ en:
   # mailers/user_mailer.rb
   sign_up_confirmation: Registration confirmation
 
+  # mailers/user_mailer.rb
+  reset_password_link: Reset password for your account
+
   # models/*.rb + lib/validators/*.rb
   errors:
     not_yourself: cannot be yourself

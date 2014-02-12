@@ -22,7 +22,7 @@ class Admin::PendingTransfersController < Admin::AdminController
   end
   
   def process_tx
-    Transfer;WireTransfer;LibertyReserveTransfer;BitcoinTransfer
+    # Transfer;WireTransfer;LibertyReserveTransfer;BitcoinTransfer
     
     @record = Transfer.where("currency IN (#{current_user.allowed_currencies.map { |c| "'#{c.to_s.upcase}'" }.join(",")})").
       find(params[:id])
