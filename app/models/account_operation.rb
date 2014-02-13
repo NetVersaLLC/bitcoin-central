@@ -1,23 +1,27 @@
 require 'digest'
 
 class AccountOperation < ActiveRecord::Base
-  CURRENCIES = %w{ EUR USD LREUR LRUSD BTC PGAU INR CAD }
+  self.inheritance_column = nil
+
+  CURRENCIES = %w{ EUR USD BTC LREUR LRUSD PGAU INR CAD }
   MIN_BTC_CONFIRMATIONS = 4
 
-  default_scope order('`account_operations`.`created_at` DESC')
+  # default_scope order('`account_operations`.`created_at` DESC')
 
   belongs_to :operation
 
   belongs_to :account
-    
+  
+  belongs_to :bank_account
+  
   after_create :refresh_orders,
     :refresh_account_address
   
   attr_accessible :amount, :currency
    
   validates :amount,
-    :presence => true,
-    :user_balance => true
+    :presence => true
+    #:user_balance => true
   
   validates :currency,
     :presence => true,

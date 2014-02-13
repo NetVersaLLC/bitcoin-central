@@ -60,9 +60,12 @@ BitcoinBank::Application.routes.draw do
       
       member do
         post :process_tx
+        post :cancel_tx
       end
     end
     
+    match '/send_cancel_message/:user_id' => "pending_transfers#send_cancel_message", :method => :post, :as => :send_cancel_message
+
     resources :users do
       as_routes
       

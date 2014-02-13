@@ -49,4 +49,13 @@ class UserMailer < BitcoinCentralMailer
     mail :to => user.email,
       :subject => I18n.t("emails.trade_notification.subject")
   end
+
+  def send_cancel_message(user, message, amount_currency)
+    @message = message
+    @amount_currency = amount_currency
+
+    mail :to => user.email,
+      :subject => 'Withdrawal request has been declined'
+  end
+
 end

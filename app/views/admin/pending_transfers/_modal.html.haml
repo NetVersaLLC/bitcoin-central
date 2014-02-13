@@ -1,0 +1,21 @@
+.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :id => "cancel_message_#{dom_id(user)}", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog
+    .modal-content
+      = form_tag( admin_send_cancel_message_path(user.id), { :method => :post, :remote => true }) do
+        .modal-header
+          %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} &times;
+          %h3#myModalLabel{:style => "border-bottom: 0px;"} New message
+        .modal-body
+          %p
+            %strong Recipient
+            %span= user.email
+          %p
+            %strong Subject
+            %span= record.amount.abs.to_s + " " + record.currency
+            %span withdrawal request was declined.
+          = hidden_field_tag :amount_currency, record.amount.abs.to_s + " " + record.currency
+          %p{:style => "margin-bottom: 0px;"}
+            %strong Content
+          = text_area_tag :message, "", { :style => "width: 100%;", :rows => 5 }
+        .modal-footer
+          = submit_tag "SEND", :class => "btn btn-primary"

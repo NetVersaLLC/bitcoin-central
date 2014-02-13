@@ -91,6 +91,17 @@ module ApplicationHelper
     qrcode_path(:data => CGI.escape(data))
   end
 
+  def include_related_asset(asset)
+        if !BitcoinBank::Application.assets.find_asset(asset).nil?
+            case asset.split('.')[-1]
+                when 'js'
+                    javascript_include_tag asset
+                when 'css'
+                    stylesheet_link_tag asset
+            end
+        end
+  end
+
   def title(page_title)
     content_for :title, page_title.to_s
   end

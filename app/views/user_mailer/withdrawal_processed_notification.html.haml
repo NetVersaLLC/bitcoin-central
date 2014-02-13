@@ -1,9 +1,11 @@
 %p= t("emails.withdrawal_processed_notification.body")
 
-%table
-  %tr
-    %th= "#{t("activerecord.models.bank_account.one")} : "  
-    %td= @withdrawal.bank_account.iban
-  %tr
-    %th= "#{t("activerecord.attributes.transfer.amount")} : "   
-    %td= "#{@withdrawal.amount} #{@withdrawal.currency}"
+-case @withdrawal.transfer_type
+  -when 'Wire'
+    #{@withdrawal.amount.abs} #{@withdrawal.currency} has been sent to your bank account #{@withdrawal.bank_account.iban}
+  -when 'Dwolla'
+    #{@withdrawal.amount.abs} #{@withdrawal.currency} has been sent to #{@withdrawal.email} with Dwolla
+  -when 'LTC'
+    #{@withdrawal.amount.abs} #{@withdrawal.currency} has been sent to #{@withdrawal.address}
+  -when 'BTC'
+    #{@withdrawal.amount.abs} #{@withdrawal.currency} has been sent to #{@withdrawal.address}

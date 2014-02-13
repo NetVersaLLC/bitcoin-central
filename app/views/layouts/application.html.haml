@@ -20,6 +20,8 @@
     = stylesheet_link_tag "application"
 
     = javascript_include_tag "application"
+    
+    = include_related_asset(params[:controller].to_param + '.js')
     = javascript_include_tag params[:controller] if ['trade_orders'].include?(params[:controller])
 
     = csrf_meta_tag

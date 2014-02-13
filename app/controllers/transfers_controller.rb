@@ -8,6 +8,30 @@ class TransfersController < ApplicationController
   end
 
   def new
+    @balance = {:USD => @current_user.balance('USD') || '0', 
+                :EUR => @current_user.balance('EUR') || '0', 
+                :LTC => @current_user.balance('LTC') || '0', 
+                :BTC => @current_user.balance('BTC') || '0'}
+
+    params[:transfer_type] = params[:transfer_type] || "BTC"
+
+    case params[:transfer_type]
+      when 'Wire'
+        @transfer = WireTransfer.new(:transfer_type => params[:transfer_type])
+        @transfer.build_bank_account
+        fetch_bank_accounts
+
+      when 'BTC'
+        @transfer = Withdraw.new(:transfer_type => "BTC")
+        # @transfer.address = params[:address] || current_user.btc_address_external
+
+      # => Don't work
+      when 'Paypal'
+        @transfer =  Withdraw.new(:transfer_type => "Paypal") 
+    end 
+
+
+=begin
     if params[:currency] == "EUR"
       @transfer = WireTransfer.new(:currency => "EUR")
       @transfer.build_bank_account
@@ -15,6 +39,7 @@ class TransfersController < ApplicationController
     else
       @transfer = Transfer.new(:currency => params[:currency] || "LRUSD")
     end
+=end
   end
   
   def show

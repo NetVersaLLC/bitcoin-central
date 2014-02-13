@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130713144131) do
+ActiveRecord::Schema.define(:version => 20140213094219) do
 
   create_table "account_operations", :force => true do |t|
     t.string   "type"
@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(:version => 20130713144131) do
     t.integer  "operation_id"
     t.string   "state"
     t.integer  "bank_account_id"
+    t.string   "transfer_type"
   end
 
   add_index "account_operations", ["lr_transaction_id"], :name => "index_transfers_on_lr_transaction_id", :unique => true
@@ -94,9 +95,11 @@ ActiveRecord::Schema.define(:version => 20130713144131) do
   end
 
   create_table "bank_accounts", :force => true do |t|
-    t.integer  "user_id",        :null => false
-    t.string   "bic",            :null => false
-    t.string   "iban",           :null => false
+    t.integer  "user_id",                           :null => false
+    t.string   "bic",                               :null => false
+    t.string   "iban",                              :null => false
+    t.string   "bank_type",      :default => "US",  :null => false
+    t.string   "currency",       :default => "USD", :null => false
     t.text     "account_holder"
     t.string   "state"
     t.datetime "created_at"
