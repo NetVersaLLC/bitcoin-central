@@ -22,6 +22,8 @@ class Admin::PendingTransfersController < Admin::AdminController
       :method => :post,
       :position => false
 
+    list.sorting = {:id => 'DESC'}
+    
   end
   
   def conditions_for_collection

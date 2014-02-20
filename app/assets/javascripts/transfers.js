@@ -20,7 +20,7 @@ function transfers()
                 }, 100);
             });
 
-        $('#transfer_amount_string').keyup(function(){
+        $('#transfer_amount').keyup(function(){
             self.getFeeCall();
         });
         
@@ -78,7 +78,7 @@ function transfers()
         url: '/account/transfers/getfee',
         data: { _method:'POST', 
                 'transfer_bank_account_id':  $("#transfer_bank_account_id option:selected").val(),
-                'amount': $('#transfer_amount_string').val().replace(',', '.')
+                'amount': $('#transfer_amount').val().replace(',', '.')
             },        
         type: 'POST'}).success(function(data){
             $('#withdrawal_fee').val(data);

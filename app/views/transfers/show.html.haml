@@ -13,10 +13,15 @@
         %th= t("activerecord.attributes.transfer.created_at")
         %td= l(@transfer.created_at)
 
-      - if @transfer.is_a?(Transfer)
+      - if @transfer.is_a?(Transfer) || @transfer.transfer_type == 'Wire'
         %tr
           %th= t("activerecord.attributes.transfer.state")
           %td= transfer_state(@transfer.state, :message => t(".state.#{@transfer.state}").html_safe, :icon => true)
+
+      - if @transfer.transfer_type
+        %tr
+          %th Type
+          %td= @transfer.transfer_type
 
       %tr
         %th= t("activerecord.attributes.transfer.amount")
@@ -38,20 +43,20 @@
           %th= t("activerecord.attributes.transfer.bt_tx_confirmations")
           %td.fixed= @transfer.bt_tx_confirmations
 
-      - if @transfer.lr_transaction_id
-        %tr
-          %th= t("activerecord.attributes.transfer.lr_transaction_id")
-          %td.fixed= @transfer.lr_transaction_id
+      /- if @transfer.lr_transaction_id
+      /  %tr
+      /    %th= t("activerecord.attributes.transfer.lr_transaction_id")
+      /    %td.fixed= @transfer.lr_transaction_id
 
       - if @transfer.px_tx_id
         %tr
           %th= t("activerecord.attributes.transfer.px_tx_id")
           %td.fixed= @transfer.px_tx_id
 
-      - if @transfer.respond_to? :bank_account
+      - if @transfer.transfer_type == 'Wire'
         %tr
           %th= t("activerecord.models.bank_account.one")
-          %td.fixed= @transfer.bank_account.iban
+          %td.fixed= @transfer.bank_account.iban + ", " + @transfer.bank_account.bic
 
       - unless @transfer.comment.blank?
         %tr

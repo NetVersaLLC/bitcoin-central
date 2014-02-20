@@ -210,12 +210,13 @@ class TradeOrder < ActiveRecord::Base
       begin
         mos = TradeOrder.matching_orders(self)
         mos.reverse!
+
         mo = mos.pop
 
         while !mo.blank? and active? and !destroyed? and user_has_balance?
           is_purchase = category == "buy"
-          purchase, sale = (is_purchase ? self : mo), (is_purchase ? mo : self)
 
+          purchase, sale = (is_purchase ? self : mo), (is_purchase ? mo : self)
           # We take the opposite order price (BigDecimal)
           p = mo.ppc
 
@@ -296,4 +297,25 @@ class TradeOrder < ActiveRecord::Base
       r
     end
   end
+
+  # Match already open orders
+  def self.match_pending_orders!
+    orders = TradeOrder.order("RAND()").where('category=?', 'sell').limit(20)
+    
+    orders.each do |o|
+      o.user = Account.find(o.user_id)
+      o.execute!
+    end
+  end
+
+  def self.close_invalid_orders!
+    #TradeOrder.destroy_all('amount < 0.00000001')
+    orders = TradeOrder.order("RAND()").limit(50)
+    orders.each do |o|
+      if o.amount < MIN_AMOUNT
+        o.destroy
+      end
+    end
+  end
+
 end

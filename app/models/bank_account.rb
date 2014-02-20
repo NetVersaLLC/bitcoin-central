@@ -13,6 +13,8 @@ class BankAccount < ActiveRecord::Base
     :presence => true
     # :format => { :with => /[A-Z]{6}[A-Z0-9]{2}[A-Z0-9]{0,3}/ }
 
+  validate :check_account_holder
+
   validates :iban,
     :presence => true
     # :iban => true
@@ -44,4 +46,24 @@ class BankAccount < ActiveRecord::Base
   def to_label
     iban
   end
+
+  # validate virtual attributes in BankAccountController: create
+  def self.init_account_holder(params)  
+    account_holder = ""
+    account_holder << "name_of_bank:" << params[:name_of_bank] if params[:name_of_bank] != ""
+    account_holder << ";bank_adress:" << params[:bank_adress] if params[:bank_adress] != ""
+    account_holder << ";benificiary_name:" << params[:benificiary_name] if params[:benificiary_name] != ""
+    account_holder << ";swift_aba:" << params[:swift_aba] if params[:swift_aba] != ""
+    account_holder << ";benificiary_adress" << params[:benificiary_adress] << ";" if params[:benificiary_adress] != "" 
+    account_holder
+  end
+
+  private 
+
+  def check_account_holder
+    if account_holder == ""
+      errors.add("All fields", "are required")
+    end
+  end
+
 end

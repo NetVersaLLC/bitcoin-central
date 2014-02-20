@@ -34,7 +34,7 @@ en:
   sold: sold
   partially: partially
   completely: completely
-  order_deleted: Trade order deleted successfully
+  order_deleted: Trade order canceled successfully
 
   # controllers/transfers_controller.rb
   successful_transfer: You successfuly transferred %{amount} %{currency}

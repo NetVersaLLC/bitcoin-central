@@ -20,3 +20,26 @@
     });
 
 })(jQuery);
+
+
+
+$(document).ready(function() {
+
+    currency = $('.currency_buy #trade_order_currency option:selected').val();
+    $('.help-inline.buy').html(currency);
+
+    $('.currency_buy #trade_order_currency').change(function(){
+        currency = $('.currency_buy #trade_order_currency option:selected').val();
+        $('.help-inline.buy').html(currency);
+    });
+
+
+    currency = $('.currency_sell #trade_order_currency option:selected').val();
+    $('.help-inline.sell').html(currency);
+
+    $('.currency_sell #trade_order_currency').change(function(){
+        currency = $('.currency_sell #trade_order_currency option:selected').val();
+        $('.help-inline.sell').html(currency);
+    });
+
+});

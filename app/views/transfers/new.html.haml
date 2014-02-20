@@ -22,17 +22,6 @@
     -else
       = render :partial => 'btc', :locals => { :f => f }
 
-  /- if @transfer.currency == "USD"
-  /  - if @bank_accounts.blank? && @transfer.bank_account_id.blank?
-  /    = f.fields_for :bank_account do |bank_account|
-  /      = render :partial => 'bank_accounts/fields', :locals => { :form_builder => bank_account }
-  /  - else
-  /    .control-group
-  /      = f.label :bank_account_id, :class => "control-label"
-  /      .controls
-  /        = f.select :bank_account_id, @bank_accounts, {}, { :prompt => "--" }
-  /        .help-inline= link_to t(".manage_bank_accounts"), user_bank_accounts_path
-
   .control-group
     = label_tag :withdrawal_fee, 'Fee', :class => "control-label"
     .controls

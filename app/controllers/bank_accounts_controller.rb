@@ -7,13 +7,18 @@ class BankAccountsController < ApplicationController
   end
 
   def create
-    @bank_account = BankAccount.new(params[:bank_account])
-    @bank_account.user = current_user
+    @bank_accounts = current_user.bank_accounts
+
+    account_holder = BankAccount.init_account_holder(params[:bank_account])
+    @bank_account = current_user.bank_accounts.new(params[:bank_account])
+
+    # validate virtual attributes
+    @bank_account.account_holder = account_holder
+    
     if @bank_account.save
       redirect_to user_bank_accounts_path,
         :notice => t("bank_accounts.index.created")
     else
-      @bank_accounts = current_user.bank_accounts
       render :action => :index
     end
   end

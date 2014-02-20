@@ -4,7 +4,7 @@
   %li= raw t(".market_data.day_range", :low => DataService::day_low, :high => DataService::day_high)
   %li= raw t(".market_data.day_volume", :btc => DataService::day_volume_btc, :usd => DataService::day_volume_usd)
   -if current_user
-    %li.pull-right= raw t(".user_balance", :btc => current_user.balance(:btc), :usd => current_user.balance(:usd))
+    %li.pull-right= raw t(".user_balance", :btc => current_user.balance(:btc), :usd => current_user.balance(:usd), :eur => current_user.balance(:eur))
 
 .row.navigation
   .span12

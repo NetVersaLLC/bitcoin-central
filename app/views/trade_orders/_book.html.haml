@@ -1,5 +1,11 @@
 .row
   .span6
-    = render :partial => "list", :locals => { :type => "purchase", :title => :bids, :orders => @purchases }
+    = render :partial => "list", :locals => { :type => "purchase", :title => :bids, :orders => @purchases_usd, :currency => 'USD' }
   .span6
-    = render :partial => "list", :locals => { :type => "sale", :title => :asks, :orders => @sales }
+    = render :partial => "list", :locals => { :type => "sale", :title => :asks, :orders => @sales_usd, :currency => 'USD' }
+
+.row
+  .span6
+    = render :partial => "list", :locals => { :type => "purchase", :title => :bids, :orders => @purchases_eur, :currency => 'EUR' }
+  .span6
+    = render :partial => "list", :locals => { :type => "sale", :title => :asks, :orders => @sales_eur, :currency => 'EUR' }

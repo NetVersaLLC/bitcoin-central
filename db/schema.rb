@@ -11,30 +11,31 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140213094219) do
+ActiveRecord::Schema.define(:version => 20140218073110) do
 
   create_table "account_operations", :force => true do |t|
     t.string   "type"
     t.integer  "account_id"
     t.string   "address"
-    t.decimal  "amount",                :precision => 16, :scale => 8, :default => 0.0
+    t.decimal  "amount",                             :precision => 16, :scale => 8, :default => 0.0
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "currency"
     t.string   "lr_transaction_id"
-    t.decimal  "lr_transferred_amount", :precision => 16, :scale => 8, :default => 0.0
-    t.decimal  "lr_merchant_fee",       :precision => 16, :scale => 8, :default => 0.0
+    t.decimal  "lr_transferred_amount",              :precision => 16, :scale => 8, :default => 0.0
+    t.decimal  "lr_merchant_fee",                    :precision => 16, :scale => 8, :default => 0.0
     t.string   "bt_tx_id"
     t.string   "bt_tx_from"
-    t.integer  "bt_tx_confirmations",                                  :default => 0
+    t.integer  "bt_tx_confirmations",                                               :default => 0
     t.string   "lr_account_id"
     t.integer  "payee_id"
     t.string   "email"
     t.string   "px_tx_id"
     t.string   "px_payer"
-    t.decimal  "px_fee",                :precision => 16, :scale => 8, :default => 0.0
+    t.decimal  "px_fee",                             :precision => 16, :scale => 8, :default => 0.0
     t.string   "comment"
     t.integer  "operation_id"
+    t.string   "operation_type",        :limit => 0
     t.string   "state"
     t.integer  "bank_account_id"
     t.string   "transfer_type"

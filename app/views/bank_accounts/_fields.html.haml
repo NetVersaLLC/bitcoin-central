@@ -1,5 +1,43 @@
+
 .control-group
-  = form_builder.label :bic, :class => "control-label"
+  = form_builder.label :swift_aba, :class => "control-label"
+  .controls
+    = form_builder.text_field :swift_aba
+
+.control-group
+  = form_builder.label :benificiary_name, :class => "control-label"
+  .controls
+    = form_builder.text_field :benificiary_name
+
+.control-group
+  = form_builder.label :benificiary_adress, :class => "control-label"
+  .controls
+    = form_builder.text_field :benificiary_adress
+
+.control-group
+  = form_builder.label :name_of_bank, :class => "control-label"
+  .controls
+    = form_builder.text_field :name_of_bank
+
+.control-group
+  = form_builder.label :bank_adress, :class => "control-label"
+  .controls
+    = form_builder.text_field :bank_adress
+
+.control-group
+  = form_builder.label :currency, :class => "control-label"
+  .controls
+    .styled-select
+      = form_builder.select :currency, [["USD", "USD"], ["EUR", "EUR"]], :class => "span2"
+  
+/.control-group
+/  = form_builder.label :bank_type, :class => "control-label"
+/  .controls
+/    .styled-select
+/      = form_builder.select :bank_type, [["US", "US"], ["International", "International"]], :class => "span2"
+
+.control-group
+  = form_builder.label  :bic, :class => "control-label"
   .controls
     = form_builder.text_field :bic
 
@@ -7,8 +45,3 @@
   = form_builder.label :iban, :class => "control-label"
   .controls
     = form_builder.text_field :iban
-
-.control-group
-  = form_builder.label :account_holder, :class => "control-label"
-  .controls
-    = form_builder.text_area :account_holder, :rows => 5

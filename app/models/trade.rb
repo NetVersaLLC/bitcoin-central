@@ -82,12 +82,14 @@ class Trade < Operation
       it.currency = currency
       it.amount = -traded_currency
       it.account_id = purchase_order.user_id
+      it.operation_type = 'trade'
     end
 
     account_operations << AccountOperation.new do |it|
       it.currency = currency
       it.amount = traded_currency - currency_fee
       it.account_id = sale_order.user_id
+      it.operation_type = 'trade'
     end
 
     account_operations << AccountOperation.new do |bt|
@@ -95,24 +97,28 @@ class Trade < Operation
       bt.amount = -traded_btc
       bt.account_id = sale_order.user_id
       bt.payee_id = purchase_order.user_id
+      bt.operation_type = 'trade'
     end
 
     account_operations << AccountOperation.new do |bt|
       bt.currency = "BTC"
       bt.amount = traded_btc - btc_fee
       bt.account_id = purchase_order.user_id
+      bt.operation_type = 'trade'
     end
 
     account_operations << AccountOperation.new do |fee|
       fee.currency = "BTC"
       fee.amount = btc_fee
       fee.account = Account.storage_account_for(:fees)
+      fee.operation_type = 'fee'
     end
 
     account_operations << AccountOperation.new do |fee|
       fee.currency = currency
       fee.amount = currency_fee
       fee.account = Account.storage_account_for(:fees)
+      fee.operation_type = 'fee'
     end
 
     save!

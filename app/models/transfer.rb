@@ -5,8 +5,8 @@ class Transfer < AccountOperation
   FEES_PERCENT = {
           'paypal' => 1,
           'okpay' => 4.0,
-          'wire_us' => 1.5,
-          'wire_international' => 1.5
+          'wire_us' => 2,
+          'wire_international' => 2
 
   }
   
