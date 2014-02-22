@@ -32,8 +32,10 @@ class TradeOrdersController < ApplicationController
         :notice => notice
     else
       @trade_orders = current_user.trade_orders.paginate(:page => params[:page], :per_page => 16)
-      @sales = _get_orders(CURRENCY, :sell)
-      @purchases = _get_orders(CURRENCY, :buy)
+      @sales_usd = _get_orders(CURRENCY, :sell)
+      @purchases_usd = _get_orders(CURRENCY, :buy)
+      @sales_eur = _get_orders('EUR', :sell)
+      @purchases_eur = _get_orders('EUR', :buy)
       render :action => :index
     end
   end
@@ -59,8 +61,10 @@ class TradeOrdersController < ApplicationController
 
   def index
     @trade_orders = current_user.trade_orders.paginate(:page => params[:page], :per_page => 16)
-    @sales = _get_orders(CURRENCY, :sell)
-    @purchases = _get_orders(CURRENCY, :buy)
+    @sales_usd = _get_orders(CURRENCY, :sell)
+    @purchases_usd = _get_orders(CURRENCY, :buy)
+    @sales_eur = _get_orders('EUR', :sell)
+    @purchases_eur = _get_orders('EUR', :buy)
     @trade_order = TradeOrder.new
   end
 
@@ -77,8 +81,10 @@ class TradeOrdersController < ApplicationController
   end
 
   def book
-    @sales = _get_orders(CURRENCY, :sell)
-    @purchases = _get_orders(CURRENCY, :buy)
+    @sales_usd = _get_orders(CURRENCY, :sell)
+    @purchases_usd = _get_orders(CURRENCY, :buy)
+    @sales_eur = _get_orders('EUR', :sell)
+    @purchases_eur = _get_orders('EUR', :buy)
 
     respond_to do |format|
       format.html
@@ -89,7 +95,7 @@ class TradeOrdersController < ApplicationController
           :asks => []
         }
 
-        { :asks => @sales, :bids => @purchases }.each do |k,v|
+        { :asks => @sales_usd, :bids => @purchases_usd }.each do |k,v|
           v.each do |to|
             json[k] << {
               :timestamp => to[:created_at].to_i,

@@ -61,3 +61,25 @@
       = submit_tag t(".deposit_pgau"), :class => "btn btn-success submit"
 
   #pecunix-sci-form-container.hidden
+
+%h3 Deposit OkPay
+.widget-container
+  %p We use the API for OkPay deposits
+
+  %br
+
+  = form_tag deposit_okpay_account_path, :method => :post do
+    .control-group
+      = label_tag :currency, "Currency", :class => "control-label"
+      .controls
+        = select_tag :currency, options_for_select(["USD", "EUR"])
+
+    .control-group
+      = label_tag :amount, "Amount", :class => "control-label"
+      .controls
+        = text_field_tag :amount, "0.0"
+
+    .form-field
+      = submit_tag "Deposit OkPay", :class => "btn btn-success submit"
+
+  #pecunix-sci-form-container.hidden

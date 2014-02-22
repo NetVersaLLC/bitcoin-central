@@ -23,20 +23,23 @@ BitcoinBank::Application.configure do
   config.action_dispatch.best_standards_support = :builtin
 
   # Uncomment this to test e-mails in development mode
-   config.action_mailer.delivery_method = :sendmail
+   config.action_mailer.delivery_method = :smtp
 
   # Comment this line if testing e-mails in development mode
-  config.action_mailer.delivery_method = :test
+  # config.action_mailer.delivery_method = :test
 
   config.action_mailer.default_url_options = {
-    :host => "tradebitcoin.local"
+    :host => "www.tradebitcoin.netversa.milion.engine.it",
+    :protocol => 'http'
   }
 
-  config.assets.debug = false
+  config.assets.debug = true
 
   # Used to broadcast invoices public URLs
-  config.base_url = "http://lvh.me:3000/"
+  config.base_url = "www.tradebitcoin.netversa.milion.engine.it"
 
-  config.cache_store = nil
+  # config.cache_store = nil
+
+  config.force_ssl = false
+
 end
-

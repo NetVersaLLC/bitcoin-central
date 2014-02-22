@@ -1,7 +1,8 @@
-class WireTransfer < Transfer
+class WireTransfer < Withdraw
+  self.inheritance_column = nil
   attr_accessible :bank_account_id, :bank_account_attributes
 
-  belongs_to :bank_account
+  # belongs_to :bank_account
 
   accepts_nested_attributes_for :bank_account
   
@@ -11,7 +12,7 @@ class WireTransfer < Transfer
     :presence => true
 
   validates :currency,
-    :inclusion => { :in => ["EUR"] }
+    :inclusion => { :in => ["USD", "EUR"] }
 
   def execute
     # Placeholder for now

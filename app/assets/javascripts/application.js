@@ -5,6 +5,8 @@
 //= require backbone/backbone-min
 //= require bootstrap-sass/js/bootstrap-dropdown
 //= require bootstrap-sass/js/bootstrap-tab
+//= require bootstrap/js/bootstrap-modal
+//= require accounts
 /* fixme: include for admin area only */
 //= require active_scaffold
 

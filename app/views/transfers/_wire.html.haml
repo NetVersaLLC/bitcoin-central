@@ -1,0 +1,22 @@
+.control-group
+  = f.label :currency, :class => "control-label"
+  .controls
+    .styled-select
+      = f.select :currency, [["USD", "USD"], ["EUR", "EUR"]], :class => "span2"
+                
+- if @bank_accounts.blank? && @transfer.bank_account_id.blank?
+  .control-group
+    = f.label :bank_type, :class => "control-label"
+    .controls
+      .styled-select
+        = f.select :bank_type, [["US", "US"], ["International", "International"]], :selected => params[:bank_type] || 'US', :class => "span2"
+    .control-group
+      = f.fields_for :bank_account do |bank_account|
+        = render :partial => 'wire_manage', :locals => { :form_builder => bank_account }          
+- else
+  .control-group
+    = f.label :bank_account_id, :class => "control-label"
+    .controls
+      .styled-select
+        = f.select :bank_account_id, options_for_select(@bank_accounts, params[:bank_account_id]), {}, { :prompt => "--", :class => "span2" }
+      .explanation= link_to t(".manage_bank_accounts"), user_bank_accounts_path, :target => "_blank"

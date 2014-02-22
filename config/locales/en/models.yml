@@ -106,8 +106,13 @@ en:
         created_at: Created at
         updated_at: Last updated at
       bank_account:
-        bic: BIC
-        iban: IBAN
+        swift_aba: Swift/ABA
+        benificiary_name: Benificiary Name
+        benificiary_adress: Benificiary Adress
+        name_of_bank: Name of Bank
+        bank_adress: Bank Adress
+        bic: Routing Number/BIC
+        iban: Account Number/IBAN
         account_holder: Full name and address
         created_at: Registered on
         state: Status

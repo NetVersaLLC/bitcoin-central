@@ -1,8 +1,11 @@
 BitcoinBank::Application.routes.draw do
+
   resources :invoices, :only => [:index, :new, :create, :show, :destroy]
 
   resource :user, :only => [:edit, :update] do
     get :ga_otp_configuration
+    put :update_password
+    get :edit_password
 
     resources :yubikeys, :only => [:index, :create, :destroy]
     resources :bank_accounts, :only => [:index, :create, :destroy]
@@ -16,7 +19,7 @@ BitcoinBank::Application.routes.draw do
     end
   end
 
-  devise_for :users, :controllers => { :registrations => "registrations" }
+  devise_for :users, :controllers => { :registrations => "registrations", :passwords => 'passwords' }
 
   # These routes need some loving :/
   resource :chart, :path => "charts", :only => [] do
@@ -31,8 +34,11 @@ BitcoinBank::Application.routes.draw do
       
     get :deposit
     get :pecunix_deposit_form
+    post 'deposit_okpay' => "accounts#deposit_okpay", :as => :deposit_okpay
     
-    resources :transfers, :only => [:index, :new, :create, :show] 
+    resources :transfers, :only => [:index, :new, :create, :show] do
+      post :getfee, :on => :collection, :to => "transfers#getfee"
+    end
     
     resources :trades, 
       :only => [:index]
@@ -57,9 +63,12 @@ BitcoinBank::Application.routes.draw do
       
       member do
         post :process_tx
+        post :cancel_tx
       end
     end
     
+    match '/send_cancel_message/:user_id' => "pending_transfers#send_cancel_message", :method => :post, :as => :send_cancel_message
+
     resources :users do
       as_routes
       

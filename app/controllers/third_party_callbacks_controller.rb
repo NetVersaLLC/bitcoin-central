@@ -1,8 +1,16 @@
+require 'json'
+
 class ThirdPartyCallbacksController < ApplicationController
   skip_before_filter :verify_authenticity_token,
     :get_bitcoin_client,
     :authenticate_user!,
     :set_time_zone
+
+  def okpay
+    okpay = Payment::Okpay.new
+    okpay.process_payment(params, request)
+    redirect_to root_path
+  end
 
   def lr_transfer_fail
     flash[:error] = t(:lr_transfer_failure, :amount => params[:lr_amnt], :currency => params[:lr_currency])

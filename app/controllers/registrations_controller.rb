@@ -3,8 +3,8 @@ class RegistrationsController < Devise::RegistrationsController
     build_resource
     
     resource.email = params[:user][:email]
-
-    verify_recaptcha and resource.captcha_checked!
+    
+    resource.captcha_checked(verify_recaptcha)
 
     if resource.save
       redirect_to root_path,

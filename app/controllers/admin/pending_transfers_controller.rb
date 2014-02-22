@@ -15,6 +15,15 @@ class Admin::PendingTransfersController < Admin::AdminController
       :type => :member, 
       :method => :post,
       :position => false
+
+    config.action_links.add 'cancel_tx', 
+      :label => 'Cancel',
+      :type => :member,
+      :method => :post,
+      :position => false
+
+    list.sorting = {:id => 'DESC'}
+    
   end
   
   def conditions_for_collection
@@ -22,15 +31,48 @@ class Admin::PendingTransfersController < Admin::AdminController
   end
   
   def process_tx
-    Transfer;WireTransfer;LibertyReserveTransfer;BitcoinTransfer
+    # Transfer;WireTransfer;LibertyReserveTransfer;BitcoinTransfer
     
-    @record = Transfer.where("currency IN (#{current_user.allowed_currencies.map { |c| "'#{c.to_s.upcase}'" }.join(",")})").
+    @record = AccountOperation.where("currency IN (#{current_user.allowed_currencies.map { |c| "'#{c.to_s.upcase}'" }.join(",")})").
       find(params[:id])
-    
-    @record.process!
-    
+
+    case @record.transfer_type
+    when 'BTC'
+      bitcoin_transfer = BitcoinTransfer.find(@record.id)
+      bitcoin_transfer.make_withdraw
+    when 'LTC'
+      litecoin_transfer = LitecoinTransfer.find(@record.id)
+      litecoin_transfer.make_withdraw
+    else
+      @record.state = 'processed'
+      @record.save!
+    end
+
     UserMailer.withdrawal_processed_notification(@record).deliver
     
     render :template => 'admin/pending_transfers/process_tx'
   end
+
+  def cancel_tx
+    @record = AccountOperation.find(params[:id])
+    @user = @record.account
+    
+    if !@record.nil?
+      AccountOperation.where(:operation_id => @record.operation_id).destroy_all
+    end
+    
+    render :template => 'admin/pending_transfers/cancel_tx'
+  end
+
+  def send_cancel_message
+    user = Account.find(params[:user_id])
+    amount_currency = params[:amount_currency]
+    message = params[:message]
+    
+    UserMailer.send_cancel_message(user, message, amount_currency).deliver
+    @result = true
+
+    render :text => ""
+  end
+
 end

@@ -1,9 +1,17 @@
 !!!
+
 %html
   %head
-    %title= t(".title")
+    -if !yield(:title).blank?
+      %title= yield(:title)
+    -else
+      %title= t(".title")
+      
+    -if !yield(:description).blank?
+      %meta{ :name => "description", :content => yield(:description) }
+    -if !yield(:keywords).blank?
+      %meta{ :name => "keywords", :content => yield(:keywords) }
 
-    %meta{ :name => "description", :content => t(".description") }
     %meta{ :"http-equiv" => "content-type", :content => "text/html;charset=UTF-8" }
     %meta{ :"http-equiv" => "content-language", :content => I18n.locale }
 
@@ -12,6 +20,8 @@
     = stylesheet_link_tag "application"
 
     = javascript_include_tag "application"
+    
+    = include_related_asset(params[:controller].to_param + '.js')
     = javascript_include_tag params[:controller] if ['trade_orders'].include?(params[:controller])
 
     = csrf_meta_tag

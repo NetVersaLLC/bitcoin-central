@@ -17,19 +17,25 @@
             = f.text_field :amount, :value => amount_field_value(@trade_order.amount),
               :class => "input-medium trigger-total-update amount trade-order-amount", :placeholder => t(".bitcoin_amount_placehodler")
             .help-inline BTC
+
+        .control-group
+          = f.label :currency, "Currency", :class => "control-label"
+          .controls.currency_buy
+            = f.select :currency, [["USD", "USD"], ["EUR", "EUR"]], :selected => @trade_order.currency || 'USD'
+
         .control-group
           = f.label :ppc, t(".ppc_label"), :class => "control-label"
           .controls
             = f.text_field :ppc, :value => DataService::day_high,
               :class => "input-medium trigger-total-update amount ppc", :placeholder => t(".max_ppc_placeholder")
-            .help-inline USD
+            .help-inline.buy USD
         .control-group
           = f.label :total, :class => "control-label"
           .controls
             = text_field_tag :total, nil, :disabled => true, :class => "input-medium amount total"
-            .help-inline USD
+            .help-inline.buy USD
         = f.hidden_field :category, :value => "buy"
-        = f.hidden_field :currency, :value => "USD"
+        /= f.hidden_field :currency, :value => "USD"
         = f.hidden_field :type, :value => "limit_order"
         = f.hidden_field :dark_pool, :value => "0"
         .control-group
@@ -46,19 +52,25 @@
             = f.text_field :amount, :value => amount_field_value(@trade_order.amount),
                 :class => "input-medium trigger-total-update amount trade-order-amount", :placeholder => t(".bitcoin_amount_placehodler")
             .help-inline BTC
+
+        .control-group
+          = f.label :currency, "Currency", :class => "control-label"
+          .controls.currency_sell
+            = f.select :currency, [["USD", "USD"], ["EUR", "EUR"]], :selected => @trade_order.currency || 'USD'
+
         .control-group
           = f.label :ppc, :class => "control-label"
           .controls
             = f.text_field :ppc, :value => DataService::last_price,
               :class => "input-medium trigger-total-update amount ppc", :placeholder => t(".min_ppc_placeholder")
-            .help-inline USD
+            .help-inline.sell USD
         .control-group
           = f.label :total, :class => "control-label"
           .controls
             = text_field_tag :total, nil, :disabled => true, :class => "input-medium amount total"
-            .help-inline USD
+            .help-inline.sell USD
         = f.hidden_field :category, :value => "sell"
-        = f.hidden_field :currency, :value => "USD"
+        /= f.hidden_field :currency, :value => "USD"
         = f.hidden_field :type, :value => "limit_order"
         = f.hidden_field :dark_pool, :value => "0"
         .control-group

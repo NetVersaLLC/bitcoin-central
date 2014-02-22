@@ -11,35 +11,49 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130713144131) do
+ActiveRecord::Schema.define(:version => 20140221165214) do
 
   create_table "account_operations", :force => true do |t|
     t.string   "type"
     t.integer  "account_id"
     t.string   "address"
-    t.decimal  "amount",                :precision => 16, :scale => 8, :default => 0.0
+    t.decimal  "amount",                             :precision => 16, :scale => 8, :default => 0.0
+    t.string   "transaction_id"
+    t.string   "payment_system"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "currency"
     t.string   "lr_transaction_id"
-    t.decimal  "lr_transferred_amount", :precision => 16, :scale => 8, :default => 0.0
-    t.decimal  "lr_merchant_fee",       :precision => 16, :scale => 8, :default => 0.0
+    t.decimal  "lr_transferred_amount",              :precision => 16, :scale => 8, :default => 0.0
+    t.decimal  "lr_merchant_fee",                    :precision => 16, :scale => 8, :default => 0.0
     t.string   "bt_tx_id"
     t.string   "bt_tx_from"
-    t.integer  "bt_tx_confirmations",                                  :default => 0
+    t.integer  "bt_tx_confirmations",                                               :default => 0
     t.string   "lr_account_id"
     t.integer  "payee_id"
     t.string   "email"
     t.string   "px_tx_id"
     t.string   "px_payer"
-    t.decimal  "px_fee",                :precision => 16, :scale => 8, :default => 0.0
+    t.decimal  "px_fee",                             :precision => 16, :scale => 8, :default => 0.0
     t.string   "comment"
     t.integer  "operation_id"
+    t.string   "operation_type",        :limit => 0
     t.string   "state"
     t.integer  "bank_account_id"
+    t.string   "transfer_type"
   end
 
   add_index "account_operations", ["lr_transaction_id"], :name => "index_transfers_on_lr_transaction_id", :unique => true
+
+  create_table "account_operations_pending", :force => true do |t|
+    t.integer  "account_id"
+    t.string   "transaction_id"
+    t.string   "payment_system"
+    t.decimal  "amount",                      :precision => 16, :scale => 8
+    t.string   "currency",       :limit => 3,                                :default => "USD", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "accounts", :force => true do |t|
     t.string   "name",                                                                     :null => false
@@ -94,9 +108,11 @@ ActiveRecord::Schema.define(:version => 20130713144131) do
   end
 
   create_table "bank_accounts", :force => true do |t|
-    t.integer  "user_id",        :null => false
-    t.string   "bic",            :null => false
-    t.string   "iban",           :null => false
+    t.integer  "user_id",                           :null => false
+    t.string   "bic",                               :null => false
+    t.string   "iban",                              :null => false
+    t.string   "bank_type",      :default => "US",  :null => false
+    t.string   "currency",       :default => "USD", :null => false
     t.text     "account_holder"
     t.string   "state"
     t.datetime "created_at"

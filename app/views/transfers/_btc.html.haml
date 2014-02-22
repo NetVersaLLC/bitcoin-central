@@ -1,0 +1,5 @@
+.control-group
+  = f.label :address, :class => "control-label"
+  .controls
+    = f.text_field :address
+    = f.hidden_field :currency, :value => "BTC"

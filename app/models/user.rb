@@ -53,15 +53,13 @@ class User < Account
     :presence => true
 
   validate :captcha do
-    if captcha.nil? and new_record?
-      unless skip_captcha
-        errors[:captcha] << I18n.t("errors.answer_incorrect")
-      end
+    if captcha == false and new_record?
+      errors[:captcha] << I18n.t("errors.answer_incorrect")
     end
   end
 
-  def captcha_checked!
-    self.captcha = true
+  def captcha_checked(recaptcha_ans)
+    self.captcha = recaptcha_ans
   end
 
   def bitcoin_address
@@ -80,6 +78,12 @@ class User < Account
     UserMailer.registration_confirmation(self).deliver
   end
 
+  def send_reset_password_instructions
+    self.reset_password_token = "#{self.id}#{ROTP::Base32.random_base32}"
+    self.save
+    UserMailer.reset_password_instructions(self).deliver
+  end
+
   protected
 
   def self.find_for_database_authentication(warden_conditions)
@@ -89,6 +93,6 @@ class User < Account
   end
 
   def generate_name
-    self.name = "BC-U#{"%06d" % (rand * 10 ** 6).to_i}"
+    self.name = "TB#{"%06d" % (rand * 10 ** 6).to_i}"
   end
 end

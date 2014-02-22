@@ -1,0 +1,6 @@
+Please wait ...
+
+= form_tag('https://www.okpay.com/process.html', :method => "post", :id => 'okpay_form') do
+  - @res.each do |index, item|  
+    
+    =hidden_field_tag(index, item)
