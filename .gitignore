@@ -17,3 +17,4 @@ config/database.yml
 config/recaptcha.yml
 config/yubico.yml
 config/mail.yml
+config/okpay.yml

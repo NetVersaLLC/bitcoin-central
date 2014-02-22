@@ -11,13 +11,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140218073110) do
+ActiveRecord::Schema.define(:version => 20140221165214) do
 
   create_table "account_operations", :force => true do |t|
     t.string   "type"
     t.integer  "account_id"
     t.string   "address"
     t.decimal  "amount",                             :precision => 16, :scale => 8, :default => 0.0
+    t.string   "transaction_id"
+    t.string   "payment_system"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "currency"
@@ -42,6 +44,16 @@ ActiveRecord::Schema.define(:version => 20140218073110) do
   end
 
   add_index "account_operations", ["lr_transaction_id"], :name => "index_transfers_on_lr_transaction_id", :unique => true
+
+  create_table "account_operations_pending", :force => true do |t|
+    t.integer  "account_id"
+    t.string   "transaction_id"
+    t.string   "payment_system"
+    t.decimal  "amount",                      :precision => 16, :scale => 8
+    t.string   "currency",       :limit => 3,                                :default => "USD", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "accounts", :force => true do |t|
     t.string   "name",                                                                     :null => false

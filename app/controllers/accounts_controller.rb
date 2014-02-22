@@ -40,7 +40,21 @@ class AccountsController < ApplicationController
       @account_holder_address = bank_account["account_holder_address"]
     end
   end
-  
+
+  def deposit_okpay
+    okpay = Payment::Okpay.new
+    okpay.user = @current_user
+    okpay.request = request
+    okpay.amount = params[:amount]
+    okpay.currency = params[:currency]
+    @res = okpay.preprocess_payment
+    
+    if request.xhr?
+      render :js => "alert('#{okpay.error_message}');" and return if @res == false
+      render :js => "window.location = '#{deposit_okpay_account_path(params[:amount])}'" and return
+    end
+  end
+
   def pecunix_deposit_form
     @amount = params[:amount]
     @payment_id = current_user.id

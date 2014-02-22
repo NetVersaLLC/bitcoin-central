@@ -34,6 +34,7 @@ BitcoinBank::Application.routes.draw do
       
     get :deposit
     get :pecunix_deposit_form
+    post 'deposit_okpay' => "accounts#deposit_okpay", :as => :deposit_okpay
     
     resources :transfers, :only => [:index, :new, :create, :show] do
       post :getfee, :on => :collection, :to => "transfers#getfee"

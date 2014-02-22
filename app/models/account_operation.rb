@@ -111,7 +111,7 @@ class AccountOperation < ActiveRecord::Base
 
         if t
           t.update_attribute(:bt_tx_confirmations, tx["confirmations"])
-        else
+        elsif tx["confirmations"] >= 6
           Operation.transaction do
             o = Operation.create!
 
@@ -121,6 +121,7 @@ class AccountOperation < ActiveRecord::Base
               bt.bt_tx_id = tx["txid"]
               bt.bt_tx_confirmations = tx["confirmations"]
               bt.currency = "BTC"
+              bt.operation_type = 'deposit'
             end
 
             o.account_operations << AccountOperation.new do |ao|
