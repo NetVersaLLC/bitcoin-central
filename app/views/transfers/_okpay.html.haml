@@ -4,6 +4,6 @@
     .styled-select
       = f.select :currency, [["USD", "USD"], ["EUR", "EUR"]], :class => "span2"
 .control-group
-  = f.label :email, 'Email/WalletID', :class => "control-label"
+  = f.label :address, 'WalletID', :class => "control-label"
   .controls
-    = f.text_field :email
+    = f.text_field :address

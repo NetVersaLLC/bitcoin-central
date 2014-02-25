@@ -2,21 +2,21 @@ BitcoinBank::Application.routes.draw do
 
   resources :invoices, :only => [:index, :new, :create, :show, :destroy]
 
-  resource :user, :only => [:edit, :update] do
-    get :ga_otp_configuration
+  resource :user, :only => [:update] do # add ':edit' for use "Identity"
+    # get :ga_otp_configuration
     put :update_password
     get :edit_password
 
-    resources :yubikeys, :only => [:index, :create, :destroy]
+    # resources :yubikeys, :only => [:index, :create, :destroy]
     resources :bank_accounts, :only => [:index, :create, :destroy]
-    resources :tickets do
-      resources :comments, :only => :create
-      member do
-        post :close
-        post :reopen
-        post :solve
-      end
-    end
+    #resources :tickets do
+    #  resources :comments, :only => :create
+    #  member do
+    #    post :close
+    #    post :reopen
+    #    post :solve
+    #  end
+    #end
   end
 
   devise_for :users, :controllers => { :registrations => "registrations", :passwords => 'passwords' }
@@ -81,7 +81,7 @@ BitcoinBank::Application.routes.draw do
       end
     end
     
-    match '/balances', :to => 'home#balances', :as => :balances
+    match '/balances', :to => 'informations#balances', :as => :balances
   end
   
   match '/qrcode/:data.png' => 'qrcodes#show', :as => :qrcode
@@ -96,12 +96,12 @@ BitcoinBank::Application.routes.draw do
   match '/economy' => 'home#economy', :as => :economy
 
   match '/support' => 'home#support', :as => :support
-  get '/user/yubikeys/enable', to: 'yubikeys#enable', as: 'yubikeys_enable'
-  get '/user/yubikeys/disable', to: 'yubikeys#disable', as: 'yubikeys_disable'
-  get '/user/gauth', to: 'gauth#index', as: 'gauth'
-  get '/user/gauth/reset', to: 'gauth#reset', as: 'gauth_reset'
-  get '/user/gauth/enable', to: 'gauth#enable', as: 'gauth_enable'
-  get '/user/gauth/disable', to: 'gauth#disable', as: 'gauth_disable'
+  # get '/user/yubikeys/enable', to: 'yubikeys#enable', as: 'yubikeys_enable'
+  # get '/user/yubikeys/disable', to: 'yubikeys#disable', as: 'yubikeys_disable'
+  # get '/user/gauth', to: 'gauth#index', as: 'gauth'
+  # get '/user/gauth/reset', to: 'gauth#reset', as: 'gauth_reset'
+  # get '/user/gauth/enable', to: 'gauth#enable', as: 'gauth_enable'
+  # get '/user/gauth/disable', to: 'gauth#disable', as: 'gauth_disable'
 
 
   get '/user/change_passsword', to: 'password#form', as: 'change_password'

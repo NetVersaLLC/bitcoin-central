@@ -224,7 +224,7 @@ en:
       new:
         ga_otp_explanation: Required only if you enabled Google Authenticator
         yk_otp_explanation: Required only if you enabled a Yubikey
-        password_explanation: Password forgotten ?
+        password_explanation: Password forgotten?
         sign_in: Sign-in
 
     unlocks:
@@ -247,9 +247,8 @@ en:
         <p>You can currently withdraw using the following methods :
           <ul>
             <li>Bitcoins,</li>
-            <li>EUR bank wire,</li>
-            <li>Liberty Reserve automated transfer,</li>
-            <li>Pecunix manual transfer</li>
+            <li>Wire Transfer,</li>
+            <li>OkPay</li>
           </ul>
         </p>
         "

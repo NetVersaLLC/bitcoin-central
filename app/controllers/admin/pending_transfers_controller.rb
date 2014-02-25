@@ -1,12 +1,23 @@
 class Admin::PendingTransfersController < Admin::AdminController
   active_scaffold :account_operation do |config|
     config.actions = [:list, :show]
-    
+
     config.columns = [
+      :account,
+      :bank_account_details,
+      :amount,
+      :currency,
+      :address,
+      :email,
+      :transfer_type,
+      :created_at
+    ]
+
+    config.list.columns = [
       :account,
       :amount,
       :currency,
-      :type,
+      :transfer_type,
       :created_at
     ]
 

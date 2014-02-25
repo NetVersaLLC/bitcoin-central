@@ -45,24 +45,24 @@
     - else
       %p#unavailable= t(".not_available")
 
-%h3= t(".deposit_pgau_title")
-.widget-container
-  %p= t(".deposit_pgau_body_html")
+/%h3= t(".deposit_pgau_title")
+/.widget-container
+/  %p= t(".deposit_pgau_body_html")
 
-  %br
+/  %br
 
-  = form_tag pecunix_deposit_form_account_path, :method => :get, :remote => true do
-    .control-group
-      = label_tag :amount, t(".pgau_amount"), :class => "control-label"
-      .controls
-        = text_field_tag :amount, nil
+/  = form_tag pecunix_deposit_form_account_path, :method => :get, :remote => true do
+/    .control-group
+/      = label_tag :amount, t(".pgau_amount"), :class => "control-label"
+/      .controls
+/        = text_field_tag :amount, nil
 
-    .form-field
-      = submit_tag t(".deposit_pgau"), :class => "btn btn-success submit"
+/    .form-field
+/      = submit_tag t(".deposit_pgau"), :class => "btn btn-success submit"
 
-  #pecunix-sci-form-container.hidden
+/  #pecunix-sci-form-container.hidden
 
-%h3 Deposit OkPay
+%h3 Deposit with OkPay
 .widget-container
   %p We use the API for OkPay deposits
 

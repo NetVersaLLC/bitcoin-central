@@ -27,7 +27,10 @@ class TransfersController < ApplicationController
 
       # => Don't work
       when 'Paypal'
-        @transfer =  Withdraw.new(:transfer_type => "Paypal") 
+        @transfer =  Withdraw.new(:transfer_type => "Paypal")
+
+      when 'Okpay'
+        @transfer =  Withdraw.new(:transfer_type => "Okpay") 
     end 
   end
   

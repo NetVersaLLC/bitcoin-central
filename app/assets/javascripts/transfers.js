@@ -51,10 +51,10 @@ function transfers()
         var feeVal = 0;
         switch ($("#transfer_transfer_type option:selected").val()) {
             case 'Wire':
-                if ($('#transfer_bank_type').val() == 'US') {
-                    feeVal = fees['wire_us'];
-                } else {
+                if ($('#transfer_bank_type').val() == 'International') {
                     feeVal = fees['wire_international'];
+                } else {
+                    feeVal = fees['wire_us'];
                 }
                 break;
             case 'Okpay':

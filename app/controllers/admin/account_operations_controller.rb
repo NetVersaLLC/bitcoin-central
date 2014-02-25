@@ -4,14 +4,17 @@ class Admin::AccountOperationsController < Admin::AdminController
   active_scaffold :account_operation do |config|
     config.actions.exclude :update, :delete
     
-    config.columns = [:account, :amount, :currency, :bt_tx_confirmations, :type, :created_at]
+    config.columns = [:account, :amount, :currency, :bt_tx_confirmations, :type, :comment, :transaction_id, :bt_tx_id, :created_at]
     
-    config.list.columns = [:created_at, :amount, :currency]
-    config.show.columns = [:amount, :currency, :bt_tx_confirmations, :type, :created_at]
+
+    config.list.columns = [:created_at, :amount, :currency, :operation_type]
+    config.show.columns = [:amount, :currency, :bt_tx_confirmations, :operation_type, :comment, :transaction_id, :bt_tx_id, :created_at]
+     
+    config.create.columns = [:amount, :currency, :comment]
     
-    config.create.columns = [:amount, :currency]
-    
-    config.columns[:account].form_ui = :select
+    config.columns[:comment].form_ui = :textarea
+
+    config.list.sorting = {:id => :desc}
   end
     
   def create
@@ -25,6 +28,7 @@ class Admin::AccountOperationsController < Admin::AdminController
           a.amount = BigDecimal(params[:record][:amount])
           a.currency = params[:record][:currency]
           a.account_id = params[:user_id]
+          a.comment = params[:record][:comment]
         end
       
         o.account_operations << @record

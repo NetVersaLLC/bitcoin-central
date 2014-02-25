@@ -13,10 +13,21 @@
         %th= t("activerecord.attributes.transfer.created_at")
         %td= l(@transfer.created_at)
 
+      - if @transfer.operation_type
+        - if @transfer.operation_type != 'fee'
+          %tr
+            %th Operation type
+            %td= @transfer.operation_type
+
       - if @transfer.is_a?(Transfer) || @transfer.transfer_type == 'Wire'
         %tr
           %th= t("activerecord.attributes.transfer.state")
           %td= transfer_state(@transfer.state, :message => t(".state.#{@transfer.state}").html_safe, :icon => true)
+
+      - if @transfer.payment_system
+        %tr
+          %th Type
+          %td= @transfer.payment_system
 
       - if @transfer.transfer_type
         %tr

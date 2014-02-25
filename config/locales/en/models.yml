@@ -25,6 +25,8 @@ en:
         total: Total
         created_at: Created at
         updated_at: Updated at
+      okpay_transfer:
+        address: WalletID
       transfer:
         id: ID
         created_at: Created at
@@ -35,7 +37,7 @@ en:
         bt_tx_confirmations: Confirmations
         bt_tx_from: Senders Bitcoin address
         bt_tx_id: Bitcoin transaction
-        email: E-mail address
+        email:  Email
         lr_merchant_fee: Liberty Reserve merchant fee
         lr_transferred_amount: Liberty Reserve transferred amount
         lr_transaction_id: Liberty Reserve ref.

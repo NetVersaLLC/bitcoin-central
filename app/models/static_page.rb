@@ -17,7 +17,14 @@ class StaticPage < ActiveRecord::Base
   def self.get_page(name, locale)
     with_name(name).with_locale(locale).first or with_name(name).with_locale(I18n.default_locale).first
   end
-  
+
+  def page_name
+    name
+  end
+
+  def page_title
+    title
+  end
   
   protected
   

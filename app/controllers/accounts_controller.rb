@@ -49,9 +49,11 @@ class AccountsController < ApplicationController
     okpay.currency = params[:currency]
     @res = okpay.preprocess_payment
     
-    if request.xhr?
-      render :js => "alert('#{okpay.error_message}');" and return if @res == false
-      render :js => "window.location = '#{deposit_okpay_account_path(params[:amount])}'" and return
+    unless @res
+      flash[:error] = okpay.error_message
+      redirect_to deposit_account_path
+      #render :js => "alert('#{okpay.error_message}');" and return if @res == false
+      #render :js => "window.location = '#{deposit_okpay_account_path(params[:amount])}'" and return
     end
   end
 

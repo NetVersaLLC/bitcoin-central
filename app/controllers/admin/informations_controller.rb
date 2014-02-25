@@ -1,6 +1,6 @@
 class Admin::InformationsController < Admin::AdminController
   def balances
-    @balances = [:usd, :btc].inject({}) do |balances, currency|
+    @balances = [:eur, :usd, :btc].inject({}) do |balances, currency|
       balances[currency] = {}
       
       balances[currency][:user] = AccountOperation.
@@ -24,6 +24,8 @@ class Admin::InformationsController < Admin::AdminController
       balances
     end
     
+    @bitcoin_balance = Bitcoin::Client.instance.getbalance
+
     @currencies = @balances.keys.map(&:to_s).sort.map(&:to_sym)
   end
   

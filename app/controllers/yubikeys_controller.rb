@@ -1,6 +1,6 @@
 class YubikeysController < ApplicationController
   layout 'account'
-
+=begin
   def index
     @yubikeys = current_user.yubikeys
     @yubikey = Yubikey.new
@@ -38,4 +38,5 @@ class YubikeysController < ApplicationController
     redirect_to user_yubikeys_path,
       :notice => t("yubikeys.notice_disabled")
   end
+=end
 end

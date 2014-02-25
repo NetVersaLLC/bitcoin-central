@@ -9,10 +9,10 @@ class Payment::Okpay
     fee = 1
     amount = self.amount.to_d.round(2)
     
-    #if amount < 1
-    #  @error_message = "The minimal amount is 1 #{self.currency}"
-    #  return false
-    #end
+    if amount < 1
+      @error_message = "The minimal amount is 1 #{self.currency}"
+      return false
+    end
     
     url = "#{self.request.protocol}#{self.request.host}"
     callback_url = "#{url}/third_party_callbacks/okpay"

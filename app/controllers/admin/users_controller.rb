@@ -24,10 +24,10 @@ class Admin::UsersController < Admin::AdminController
       :name,
       :full_name,
       :email,
-      :address,
-      :require_ga_otp,
-      :require_yk_otp,
-      :merchant,
+      # :address,
+      # :require_ga_otp,
+      # :require_yk_otp,
+      # :merchant,
       :time_zone,
       :bitcoin_address,
       :confirmation_sent_at,
@@ -57,9 +57,9 @@ class Admin::UsersController < Admin::AdminController
       :full_name,
       :email,
       :address,
-      :require_ga_otp,
-      :require_yk_otp,
-      :merchant,
+      # :require_ga_otp,
+      # :require_yk_otp,
+      # :merchant,
       :time_zone,
       :bitcoin_address,
       :confirmation_sent_at,
@@ -73,13 +73,13 @@ class Admin::UsersController < Admin::AdminController
       :commission_rate
     ]
 
-    config.columns[:merchant].inplace_edit = true
-    config.columns[:require_ga_otp].inplace_edit = true
-    config.columns[:require_yk_otp].inplace_edit = true
+    # config.columns[:merchant].inplace_edit = true
+    # config.columns[:require_ga_otp].inplace_edit = true
+    # config.columns[:require_yk_otp].inplace_edit = true
 
     config.search.columns << :id
 
-    config.nested.add_link(:yubikeys)
+    # config.nested.add_link(:yubikeys)
 
     config.action_links.add :balances,
       :type => :member,

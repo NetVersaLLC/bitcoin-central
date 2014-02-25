@@ -113,4 +113,16 @@ module ApplicationHelper
   def keywords(page_keywords)
     content_for :keywords, page_keywords.to_s
   end
+
+  def bank_account_details_column(record)
+    if !record.bank_account.nil?
+
+      data = "BIC: #{record.bank_account.bic}<br />IBAN: #{record.bank_account.iban}<br />Owner: #{record.bank_account.account_holder.html_safe}<br />Currency: #{record.bank_account.currency}<br />Type: #{record.bank_account.bank_type}"
+      return data.html_safe
+    else
+      return '-'
+    end
+    
+  end
+
 end

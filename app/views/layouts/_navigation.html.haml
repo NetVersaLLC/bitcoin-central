@@ -29,10 +29,10 @@
               = menu_item "activerecord.models.user.other", admin_users_path
               = menu_item ".admin.pending_transfers", admin_pending_transfers_path
               = menu_item ".admin.information", admin_balances_path
-              = menu_item "activerecord.models.announcement.other", admin_announcements_path
+              /= menu_item "activerecord.models.announcement.other", admin_announcements_path
               = menu_item "activerecord.models.static_page.other", admin_static_pages_path
               = menu_item "activerecord.models.currency.other", admin_currencies_path, :admin => true
-              = menu_item "activerecord.models.ticket.other", admin_tickets_path
+              /= menu_item "activerecord.models.ticket.other", admin_tickets_path
 
           -#= menu_item ".ecommerce.main", nil, :merchant => true do
           -#  %ul{:class => "dropdown-menu"}
@@ -47,7 +47,7 @@
               %ul{:class => "dropdown-menu"}
                 = menu_item ".account.deposit", deposit_account_path
                 = menu_item ".account.withdraw", new_account_transfer_path
-                %li= link_to t(".account.edit"), edit_user_path
+                %li= link_to t(".account.edit"), notification_settings_path # or edit_user_path
                 %li= link_to t(".account.logout"), destroy_session_path(:user)
           - else
             %li= link_to t(".sign_in"), new_session_path(:user)

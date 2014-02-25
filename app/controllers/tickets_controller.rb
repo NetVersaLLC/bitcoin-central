@@ -2,9 +2,9 @@ class TicketsController < ApplicationController
   before_filter :check_permissions, 
     :only => [:show, :close, :reopen]
   
-  def new
-    @ticket = current_user.tickets.new
-  end
+  #def new
+  #  @ticket = current_user.tickets.new
+  #end
 
   def index
     @tickets = current_user.tickets

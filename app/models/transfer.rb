@@ -70,7 +70,7 @@ class Transfer < AccountOperation
 
     case transfer_type
       when 'wire'
-        BigDecimal("30.0")
+        BigDecimal("50.0")
       when 'okpay'
         BigDecimal("5.0")
       when 'ltc'
